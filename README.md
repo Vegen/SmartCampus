@@ -20,4 +20,4 @@
 **智慧校园APP运行gif图**
 ![动图](http://img.blog.csdn.net/20170425122131462?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQW5kcm9pZHRhbGVudA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-我的博客地址：http://blog.csdn.net/androidtalent/
+详情请看我的博客，地址：http://blog.csdn.net/androidtalent/
