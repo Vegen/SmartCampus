@@ -17,5 +17,7 @@
 前期进行需求分析，建立模型，根据需求设计好APP的UI。开发阶段采用最新技术，与时俱进。
 
 
-**智慧校园APP运行截图**
-![](http://img.blog.csdn.net/20170425122131462?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQW5kcm9pZHRhbGVudA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+**智慧校园APP运行gif图**
+![动图](http://img.blog.csdn.net/20170425122131462?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQW5kcm9pZHRhbGVudA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+我的博客地址：http://blog.csdn.net/androidtalent/
