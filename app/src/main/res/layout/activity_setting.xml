@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_signout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_team_size"
+        android:textColor="@color/white"
+        android:textSize="@dimen/common_text_size_16"
+        android:text="退出登录"
+        android:gravity="center"
+        android:background="@color/colorTheme"/>
+</LinearLayout>

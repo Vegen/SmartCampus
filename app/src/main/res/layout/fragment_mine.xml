@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:background="@color/background_gray"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/banner1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/my_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_item_size"
+                    android:layout_marginTop="80dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/ic_my_data" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="我的资料"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size_14" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:src="@mipmap/ic_go" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30px"
+                    android:background="@color/background_gray" />
+                <LinearLayout
+                    android:id="@+id/ll_collection"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_item_size"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/ic_collection" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="收藏"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size_14" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10px"
+                    android:background="@color/background_gray" />
+
+                <LinearLayout
+                    android:id="@+id/ll_my_information"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_item_size"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/ic_my_information" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="我的发布"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size_14" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20px"
+                    android:background="@color/background_gray" />
+
+                <LinearLayout
+                    android:id="@+id/ll_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_item_size"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/ic_setting" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="设置"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size_14" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10px"
+                    android:background="@color/background_gray" />
+
+                <!--<RelativeLayout-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp">-->
+                <!--<TextView-->
+                <!--android:id="@+id/my_team"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="我的团队"-->
+                <!--android:textSize="@dimen/common_text_size_14"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textColor="@color/black"/>-->
+                <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:layout_toRightOf="@+id/my_team"-->
+                <!--android:id="@+id/rv_team_list"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"/>-->
+                <!--</RelativeLayout>-->
+            </LinearLayout>
+        </LinearLayout>
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fa_menu"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|right"-->
+            <!--app:backgroundTint="@android:color/transparent"-->
+            <!--app:rippleColor="@drawable/selector_menu"-->
+            <!--app:elevation="2dp"-->
+            <!--android:src="@drawable/fa_menu"/>-->
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp">
+        <com.itculturalfestival.smartcampus.ui.view.CircleImageView
+            android:id="@+id/civ_head"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp"
+            android:src="@mipmap/banner1"/>
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/common_text_size_14"
+            android:textColor="@color/black"
+            android:text="huweijian"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

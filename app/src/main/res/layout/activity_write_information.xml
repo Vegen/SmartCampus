@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_title"
+                        android:hint="输入标题..."
+                        android:padding="5dp"
+                        android:textColorHint="@color/hint_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/item_size_64"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/border_radius_shadow"
+                        android:gravity="clip_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/common_text_size_14" />
+                </LinearLayout>
+
+                <!-- 富文本编辑器 -->
+
+                <com.itculturalfestival.smartcampus.ui.view.RichTextEditor
+                    android:id="@+id/richEditor"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/border_radius_shadow"
+                    android:layout_height="wrap_content"
+                    android:minHeight="400dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#666"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <View
+            android:id="@+id/button1"
+            android:layout_width="30dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/image1"
+            android:gravity="center_horizontal" />
+
+        <View
+            android:id="@+id/button2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="14dp"
+            android:background="@drawable/image2"
+            android:gravity="center_horizontal"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <View
+            android:id="@+id/button3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/image3"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+
+</LinearLayout>

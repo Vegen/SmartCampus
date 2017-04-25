@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_vertical"
+    android:padding="5dp"
+    android:background="@drawable/bg_corners_gray">
+
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="3dp"
+        android:src="@mipmap/ic_search_unfocus"/>
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dp"
+        android:inputType="text"
+        android:textColorHint="@color/hint_color"
+        android:imeOptions="actionSearch"
+        android:background="@android:color/transparent"
+        android:maxLines="1" />
+
+
+    <ImageView
+        android:id="@+id/iv_del"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginLeft="5dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_delete_text" />
+
+</LinearLayout>

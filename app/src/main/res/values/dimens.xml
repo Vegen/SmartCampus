@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_title_size_18">18sp</dimen>
+    <dimen name="item_source_size_12">12sp</dimen>
+    <dimen name="item_time_size_12">12sp</dimen>
+    <dimen name="item_head_size_80">80dp</dimen>
+    <dimen name="item_size_64">64dp</dimen>
+    <dimen name="load_more_item_size_30">30dp</dimen>
+    <dimen name="menu_ic_size">24dp</dimen>
+    <dimen name="menu_text_size">10sp</dimen>
+    <dimen name="circle_imageview_size">40dp</dimen>
+    <dimen name="item_team_size">50dp</dimen>
+    <dimen name="header_height">45dp</dimen>
+    <dimen name="common_text_size_14">14sp</dimen>
+    <dimen name="search_height">40dp</dimen>
+    <dimen name="common_item_size">40dp</dimen>
+    <dimen name="image_final_width">32dp</dimen>
+    <dimen name="image_width_120">120dp</dimen>
+    <dimen name="common_text_size_16">16sp</dimen>
+    <dimen name="long_edit_150">150dp</dimen>
+    <dimen name="edit_padding_top">5dp</dimen>
+    <dimen name="main_image_size">20dp</dimen>
+</resources>

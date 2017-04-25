@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_gray">
+
+    <!--<include layout="@layout/view_header"/>-->
+    <com.itculturalfestival.smartcampus.ui.view.Header
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        themeColor="@color/white"
+        hideFunBtn="true"
+        title="@string/create_team"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_team_size"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团队名称："
+                android:textSize="@dimen/common_text_size_14"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/et_team_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="团队名称，方便同学查找"
+                android:maxEms="16"
+                android:maxLines="1"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hintColor"
+                android:textSize="@dimen/common_text_size_14" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line"/>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团队简介："
+                android:textSize="@dimen/common_text_size_14"
+                android:layout_gravity="left|start"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/et_team_introduce"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:textSize="@dimen/common_text_size_14"
+                android:gravity="clip_vertical"
+                android:hint="给力的文字，为团队添色"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/hintColor" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_team_size"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团队类型"
+                android:layout_weight="1"
+                android:textSize="@dimen/common_text_size_14"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团学组织"
+                android:textSize="@dimen/common_text_size_14"
+                android:textColor="@color/black"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:id="@+id/ll_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_camera"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/common_text_size_14"
+                    android:textColor="@color/colorTheme"
+                    android:text="Logo"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/iv_logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_next_step"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_width="180dp"
+        android:gravity="center"
+        android:background="@color/colorTheme"
+        android:textColor="@color/white"
+        android:text="下一步"
+        android:layout_height="34dp" />
+</LinearLayout>

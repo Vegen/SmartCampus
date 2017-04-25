@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="smart_campus" ></dbname>
+
+    <version value="1" ></version>
+
+    <list>
+        <mapping class="com.itculturalfestival.smartcampus.entity.RecordDB"/>
+        <mapping class="com.itculturalfestival.smartcampus.entity.UserDB"/>
+    </list>
+</litepal>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/background_gray">
+
+    <com.itculturalfestival.smartcampus.ui.view.Header
+        hideFunBtn="true"
+        themeColor="@color/white"
+        title="@string/found_team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.itculturalfestival.smartcampus.ui.view.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_height"
+        app:sv_hint="团队名称"
+        android:background="@drawable/bg_corners_white"
+        android:layout_margin="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_item_size"
+                android:background="@color/bg_gray"
+                android:textSize="@dimen/common_text_size_14"
+                android:textColor="@color/text_color"
+                />
+            <TextView
+                android:layout_marginLeft="26dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_item_size"
+                android:background="@color/bg_gray"
+                android:textSize="@dimen/common_text_size_14"
+                android:textColor="@color/text_color"
+                android:text="团队类别"
+                />
+        </FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_team_type"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_team_size"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="38dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:paddingRight="10dp"
+            android:src="@mipmap/ic_back"  />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="80dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="填写记录"
+            android:textColor="@color/colorTheme"
+            android:textSize="19sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_fun"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp">
+            <ImageView
+                android:id="@+id/iv_remove"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/ic_remove"
+                android:padding="3dp"/>
+
+            <ImageView
+                android:id="@+id/iv_update"
+                android:clickable="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="13dp"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:src="@drawable/ic_update" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:gravity="center_vertical"
+                    android:text="标题"
+                    android:textSize="@dimen/common_text_size_16"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_team_size" />
+
+                <EditText
+                    android:id="@+id/et_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/border_radius_shadow"
+                    android:gravity="clip_vertical"
+                    android:minHeight="@dimen/item_head_size_80"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/common_text_size_14" />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/tv_content"
+                    android:gravity="center_vertical"
+                    android:text="详情"
+                    android:textSize="@dimen/common_text_size_16"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_team_size" />
+                <EditText
+                    android:id="@+id/et_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="clip_vertical"
+                    android:textSize="@dimen/common_text_size_14"
+                    android:minHeight="@dimen/long_edit_150"
+                    android:background="@drawable/border_radius_shadow"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/submit"
+                android:text="确定"
+                style="@style/commit_button" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
