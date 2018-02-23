@@ -34,7 +34,7 @@
 
     <!--android:name="org.litepal.LitePalApplication"-->
     <application
-        android:name=".other.ChatApplication"
+        android:name=".other.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"

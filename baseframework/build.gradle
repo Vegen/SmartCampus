@@ -1,0 +1,55 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["support-v4"]
+    compile rootProject.ext.dependencies["support:design"]
+    compile rootProject.ext.dependencies["retrofit2:converter-gson"]
+    compile rootProject.ext.dependencies["retrofit2:adapter"]
+    compile rootProject.ext.dependencies["rxjava2:rxandroid"]
+    compile rootProject.ext.dependencies["rxjava2:rxjava"]
+
+    // 组件间的通信
+    compile 'org.greenrobot:eventbus:3.1.1'
+    // 图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    // butterknife
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // Fragment框架
+    // 如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
+    compile 'me.yokeyword:fragmentation-core:1.0.7'
+    // 如果想使用SwipeBack 滑动边缘退出Fragment/Activity功能，完整的添加规则如下：
+    compile 'me.yokeyword:fragmentation:1.0.7'
+    // SwipeBack基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
+    compile 'me.yokeyword:fragmentation-swipeback:1.0.7'
+}

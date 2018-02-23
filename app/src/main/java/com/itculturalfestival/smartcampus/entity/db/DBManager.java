@@ -10,7 +10,7 @@ import com.hyphenate.easeui.utils.EaseCommonUtils;
 import com.hyphenate.util.HanziToPinyin;
 import com.itculturalfestival.smartcampus.domain.InviteMessage;
 import com.itculturalfestival.smartcampus.domain.RobotUser;
-import com.itculturalfestival.smartcampus.other.ChatApplication;
+import com.itculturalfestival.smartcampus.other.MyApplication;
 import com.itculturalfestival.smartcampus.other.Constant;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class DBManager {
     private DbOpenHelper dbHelper;
 
     private DBManager(){
-        dbHelper = DbOpenHelper.getInstance(ChatApplication.getInstance().getApplicationContext());
+        dbHelper = DbOpenHelper.getInstance(MyApplication.getInstance().getApplicationContext());
     }
 
     public static synchronized DBManager getInstance(){

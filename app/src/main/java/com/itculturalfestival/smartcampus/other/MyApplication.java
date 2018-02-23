@@ -3,19 +3,18 @@ package com.itculturalfestival.smartcampus.other;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.support.multidex.MultiDexApplication;
 import android.widget.Toast;
 
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
-import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.util.EMLog;
 import com.itculturalfestival.smartcampus.ui.activity.start.LoginActivity;
 
-import org.litepal.LitePalApplication;
+import org.litepal.LitePal;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,19 +27,19 @@ import static com.hyphenate.chat.EMGCMListenerService.TAG;
  * @describe:
  */
 
-public class ChatApplication extends LitePalApplication {
+public class MyApplication extends MultiDexApplication {
 
     public static Context mContext ;
     // 记录是否已经初始化
     private boolean isInit = false;
-    private static ChatApplication instance;
+    private static MyApplication instance;
     private EMConnectionListener connectionListener;;
 
     @Override
     public void onCreate() {
-        List<String> strings = new ArrayList<>();
         super.onCreate();
         mContext  = this;
+        LitePal.initialize(this);
         // 初始化环信SDK
 //        initEasemob();
 
@@ -56,7 +55,7 @@ public class ChatApplication extends LitePalApplication {
 //        setGlobalListeners();
     }
 
-    public static ChatApplication getInstance() {
+    public static MyApplication getInstance() {
         return instance;
     }
 

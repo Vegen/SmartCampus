@@ -1,0 +1,61 @@
+ext {
+    android = [
+            versionName: "1.0.1",
+            "compileSdkVersion": 26,
+            "buildToolsVersion": "25.0.0",
+            "minSdkVersion"    : 15,
+            "targetSdkVersion" : 25,
+    ]
+
+    productFlavors = [
+            offical    : "offical",
+            baidu      : "baidu",
+            qinghu     : "360",
+            anzhi      : "anzhi",
+            meizu      : "meizu",
+            vivo       : "vivo",
+            oppo       : "oppo",
+            beta       : "beta",
+            xiaomi     : "xiaomi",
+            huawei     : "huawei",
+            wandoujia  : "wandoujia",
+            yingyongbao: "yingyongbao",
+            appchina   : "appchina",
+            mumayi     : "mumayi",
+            samsung    : "samsung",
+            lenovo     : "lenovo",
+            gfan       : "gfan",
+            telecom    : "189",
+            cmcc       : "10086",
+            sogou      : "sogou",
+            wostore    : "wostore",
+            analysisTag: "smartcampus",
+    ]
+
+    version = [
+            androidSupportSdkVersion     : "25.3.1",
+            retrofit2ConverterGsonVersion: "2.1.0",
+            retrofit2AdapterVersion      : "2.3.0",
+            rxjava2RxandroidVersion      : "2.0.1",
+            rxjava2Rxjava                : "2.1.0",
+            reactivexRxandroid           : "1.1.0",
+            reactivexRxjava              : "1.1.0",
+    ]
+
+    dependencies = [
+            //support
+            "appcompat-v7"            : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+            "support-v4"              : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
+            "support:design"          : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+            //retrofit2
+            "retrofit2:converter-gson": "com.squareup.retrofit2:converter-gson:${version["retrofit2ConverterGsonVersion"]}",
+            "retrofit2:adapter"       : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofit2AdapterVersion"]}",
+            //RxJava2
+            "rxjava2:rxandroid"       : "io.reactivex.rxjava2:rxandroid:${version["rxjava2RxandroidVersion"]}",
+            "rxjava2:rxjava"          : "io.reactivex.rxjava2:rxjava:${version["rxjava2Rxjava"]}",
+            //RxJava1
+            "reactivex:rxandroid"     : "io.reactivex:rxandroid:${version["reactivexRxandroid"]}",
+            "reactivex:rxjava"        : "io.reactivex:rxjava:${version["reactivexRxjava"]}",
+    ]
+
+}
