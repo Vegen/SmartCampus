@@ -18,6 +18,8 @@ import org.litepal.LitePal;
 import java.util.Iterator;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+
 import static com.hyphenate.chat.EMGCMListenerService.TAG;
 
 /**
@@ -40,6 +42,9 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
         mContext  = this;
         LitePal.initialize(this);
+
+        Bmob.initialize(this, "替换自己的applicationId");
+
         // 初始化环信SDK
 //        initEasemob();
 

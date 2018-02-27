@@ -24,6 +24,13 @@ android {
 //        incremental true
         javaMaxHeapSize "4g"
     }
+
+    // **兼容Android6.0系统所需，如果这句话报错，可在dependencies标签下使用compile 'cn.bmob.android:http-legacy:1.0'**
+    useLibrary 'org.apache.http.legacy'
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 dependencies {
@@ -46,6 +53,14 @@ dependencies {
     compile 'org.litepal.android:core:1.6.1'
     // 多分包
     compile 'com.android.support:multidex:1.0.1'
+
+    // Bmob 配置
+    // bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
+    compile 'cn.bmob.android:bmob-sdk:3.5.5'
+    // bmob-sms ：Bmob单独为短信服务提供的包
+    compile 'cn.bmob.android:bmob-sms:1.0.1'
+    // 如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
+    compile 'cn.bmob.android:http-legacy:1.0'
 
     compile project(':baseframework')
     compile project(':easeui')

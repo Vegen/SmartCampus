@@ -38,8 +38,6 @@ ext {
             retrofit2AdapterVersion      : "2.3.0",
             rxjava2RxandroidVersion      : "2.0.1",
             rxjava2Rxjava                : "2.1.0",
-            reactivexRxandroid           : "1.1.0",
-            reactivexRxjava              : "1.1.0",
     ]
 
     dependencies = [
@@ -53,9 +51,6 @@ ext {
             //RxJava2
             "rxjava2:rxandroid"       : "io.reactivex.rxjava2:rxandroid:${version["rxjava2RxandroidVersion"]}",
             "rxjava2:rxjava"          : "io.reactivex.rxjava2:rxjava:${version["rxjava2Rxjava"]}",
-            //RxJava1
-            "reactivex:rxandroid"     : "io.reactivex:rxandroid:${version["reactivexRxandroid"]}",
-            "reactivex:rxjava"        : "io.reactivex:rxjava:${version["reactivexRxjava"]}",
     ]
 
 }
