@@ -44,7 +44,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <!--android:name="org.litepal.LitePalApplication"-->
     <application
         android:name=".other.MyApplication"
         android:allowBackup="true"
@@ -54,11 +53,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppBaseTheme">
 
-        <activity android:name=".ui.activity.start.SplashActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
@@ -82,29 +81,6 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-
-        <activity android:name=".ui.activity.start.GuideActivity"/>
-        <activity android:name=".ui.activity.start.LoginActivity"/>
-        <activity android:name=".ui.activity.information.MainActivity"/>
-        <activity android:name=".ui.activity.team.TeamActivity"/>
-        <activity android:name=".ui.activity.team.CreateTeamActivity"/>
-        <activity android:name=".ui.activity.team.CreateTeamActivity2"/>
-        <activity android:name=".ui.activity.team.FoundTeamActivity"/>
-        <activity android:name=".ui.activity.team.TeamByTypeActivity"/>
-        <activity android:name=".ui.activity.mine.MineActivity"/>
-        <activity android:name=".ui.activity.record.RecordActivity"/>
-        <activity android:name=".ui.activity.message.MessageActivity"/>
-        <activity android:name=".ui.activity.mine.MyDataActivity"/>
-        <activity android:name=".ui.activity.record.RecordDetailsActivity"/>
-        <activity android:name=".ui.activity.start.SignUpActivity"/>
-        <activity android:name=".ui.activity.team.TeamIntroduceActivity"/>
-        <activity android:name=".ui.activity.team.TeamInformationActivity"/>
-        <activity android:name=".ui.activity.team.WriteInformationActivity"/>
-        <activity android:name=".ui.activity.information.InformationActivity"/>
-        <activity android:name=".ui.activity.mine.SettingActivity"/>
-        <activity android:name=".ui.activity.message.ChatActivity"/>
-        <activity android:name=".ui.activity.message.ConversationListActivity"/>
-        <activity android:name=".ui.activity.information.SearchActivity"/>
 
         <!-- easeui图片大图activity -->
         <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity" />

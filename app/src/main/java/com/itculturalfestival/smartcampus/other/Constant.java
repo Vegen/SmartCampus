@@ -33,4 +33,5 @@ public class Constant extends EaseConstant {
     public static final String OBJECT_USER_SEX = "objectUserSex";
 
 
+    public static final String ApplicationId = "329abfb679b7560b6d3bc80ef9204d2c";
 }

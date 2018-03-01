@@ -53,7 +53,6 @@ dependencies {
     compile 'org.litepal.android:core:1.6.1'
     // 多分包
     compile 'com.android.support:multidex:1.0.1'
-
     // Bmob 配置
     // bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
@@ -61,6 +60,10 @@ dependencies {
     compile 'cn.bmob.android:bmob-sms:1.0.1'
     // 如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     compile 'cn.bmob.android:http-legacy:1.0'
+    // BRVAH
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    // jsoup 解析 html
+    compile 'org.jsoup:jsoup:1.11.2'
 
     compile project(':baseframework')
     compile project(':easeui')

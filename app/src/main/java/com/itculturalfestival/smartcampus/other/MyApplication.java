@@ -11,7 +11,6 @@ import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.util.EMLog;
-import com.itculturalfestival.smartcampus.ui.activity.start.LoginActivity;
 
 import org.litepal.LitePal;
 
@@ -21,6 +20,7 @@ import java.util.List;
 import cn.bmob.v3.Bmob;
 
 import static com.hyphenate.chat.EMGCMListenerService.TAG;
+import static com.itculturalfestival.smartcampus.other.Constant.ApplicationId;
 
 /**
  * @creation_time: 2017/4/17
@@ -43,7 +43,7 @@ public class MyApplication extends MultiDexApplication {
         mContext  = this;
         LitePal.initialize(this);
 
-        Bmob.initialize(this, "替换自己的applicationId");
+//        Bmob.initialize(this, ApplicationId);       // todo 修正渠道
 
         // 初始化环信SDK
 //        initEasemob();
@@ -184,7 +184,7 @@ public class MyApplication extends MultiDexApplication {
                     onUserException(Constant.ACCOUNT_CONFLICT);
                     EMClient.getInstance().logout(true);//退出登录
                     Toast.makeText(getApplicationContext(),"退出成功",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 } else if (error == EMError.SERVER_SERVICE_RESTRICTED) {//
                     onUserException(Constant.ACCOUNT_FORBIDDEN);
                 }
