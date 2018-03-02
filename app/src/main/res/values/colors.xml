@@ -18,4 +18,7 @@
     <color name="gray">#f7f6f6</color>
     <color name="bg_gray">#ededed</color>
     <color name="hint_color">#b2b2b2</color>
+
+    <!--Black-->
+    <color name="Black_FF333333">#FF333333</color>
 </resources>

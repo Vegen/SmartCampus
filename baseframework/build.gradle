@@ -51,4 +51,8 @@ dependencies {
     compile 'me.yokeyword:fragmentation:1.0.7'
     // SwipeBack基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
     compile 'me.yokeyword:fragmentation-swipeback:1.0.7'
+    // Log
+    compile 'com.orhanobut:logger:2.1.1'
+    // 沉浸式状态栏
+    compile 'com.gyf.barlibrary:barlibrary:2.3.0'
 }

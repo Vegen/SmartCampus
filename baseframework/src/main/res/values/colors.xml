@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="framework_colorPrimary">#12b7f5</color>
+    <color name="framework_colorPrimaryDark">#303F9F</color>
+    <color name="framework_colorAccent">#FF4081</color>
+    <color name="framework_colorTheme">#12b7f5</color>
+</resources>

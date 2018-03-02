@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.itculturalfestival.smartcampus.R;
-import com.itculturalfestival.smartcampus.util.PhoneUtil;
+import com.itculturalfestival.smartcampus.utils.PhoneUtil;
 
 import java.util.ArrayList;
 import java.util.List;

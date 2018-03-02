@@ -1,6 +1,6 @@
 package com.itculturalfestival.smartcampus.bean;
 
-import com.itculturalfestival.smartcampus.util.StrUtil;
+import com.itculturalfestival.smartcampus.utils.StrUtil;
 
 /**
  * @creation_time: 2017/3/27

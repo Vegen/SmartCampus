@@ -40,13 +40,9 @@ dependencies {
     })
     // 轮播
     compile 'com.youth.banner:banner:1.4.9'
-    // 弧形布局
-    compile 'com.ogaclejapan.arclayout:library:1.1.0@aar'
     // 万能 adapter
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'com.zhy:base-adapter:3.0.3'
-    // 友盟
-    compile 'com.umeng.analytics:umeng-analytics:5.4.1'
     // 汉字拼音
     compile 'com.belerweb:pinyin4j:2.5.1'
     // 数据库
@@ -66,5 +62,5 @@ dependencies {
     compile 'org.jsoup:jsoup:1.11.2'
 
     compile project(':baseframework')
-    compile project(':easeui')
+//    compile project(':easeui')
 }

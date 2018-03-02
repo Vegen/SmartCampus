@@ -14,10 +14,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.entity.InformationDB;
-import com.itculturalfestival.smartcampus.util.DateUtil;
-import com.itculturalfestival.smartcampus.util.L;
+import com.itculturalfestival.smartcampus.utils.DateUtil;
 
-import java.util.Date;
 import java.util.List;
 
 /**

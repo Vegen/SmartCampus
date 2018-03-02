@@ -31,6 +31,24 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
     }
 
     @Override
+    public void showLoading(String msg) {
+        if (msg == null || msg.isEmpty())
+            showProgressDialog();
+        else
+            showProgressDialog(msg);
+    }
+
+    @Override
+    public void hideLoading() {
+        dismissProgressDialog();
+    }
+
+    @Override
+    public void showMessage(String message) {
+        showToast(message);
+    }
+
+    @Override
     public Application application() {
         return this.getApplication();
     }

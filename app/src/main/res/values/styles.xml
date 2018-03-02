@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,15 +6,34 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:spinnerDropDownItemStyle">@style/AppSpinner</item>
+        <item name="toolbarStyle">@style/Toolbar</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:textColorHint">@color/hint_color</item>
+
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+
+        <item name="actionMenuTextColor">@color/Black_FF333333</item>
+
+        <item name="android:windowContentOverlay">@null</item>
     </style>
-    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
-        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-        <!--<item name="colorPrimaryDark">@color/colorTheme</item>-->
-        <!--<item name="colorAccent">@color/colorTheme</item>-->
-        <!--<item name="colorControlActivated">@color/colorTheme</item>-->
-        <!--<item name="colorControlHighlight">@color/colorTheme</item>-->
-        <!--<item name="android:listDivider">@drawable/shape_divider</item>-->
-    <!--</style>-->
+
+    <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="titleTextAppearance">@style/TitleStyle</item>
+    </style>
+
+    <style name="AppSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TitleStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorTheme</item>
         <item name="colorPrimaryDark">@color/colorTheme</item>
