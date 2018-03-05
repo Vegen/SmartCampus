@@ -10,6 +10,11 @@
     <string name="record">记录</string>
     <string name="null_text"></string>
 
+    <!--基类-->
+    <string name="app_empty">暂无内容</string>
+    <string name="app_error">加载出错\n点击重试</string>
+
+
     <!--登录注册-->
     <string name="login">登录</string>
     <string name="phone">请输入您的电话号码</string>

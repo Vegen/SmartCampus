@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,11 @@ import com.vegen.smartcampus.baseframework.mvp.view.BaseView;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.ButterKnife;
+import io.reactivex.disposables.Disposable;
 
 public abstract class BaseFragment extends Fragment implements BaseView {
 
@@ -28,20 +33,9 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     protected abstract void initData();
 
-    private View fragmentView;
+    protected final String tag = this.getClass().getSimpleName();
 
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        fragmentView = inflater.inflate(layoutId(), container, false);
-        ButterKnife.bind(this, fragmentView);
-        return fragmentView;
-    }
-
-    protected <T extends View> T getView(int viewId){
-        return (T) fragmentView.findViewById(viewId);
-    }
+    private List<Disposable> disposableList = new ArrayList<>();
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -53,6 +47,24 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        closeEventBus();
+        disposeAll();
+    }
+
+    protected void addDisposable(Disposable disposable) {
+        disposableList.add(disposable);
+    }
+
+    protected void disposeAll() {
+        try {
+            for (int i = 0; i < disposableList.size(); i++) {
+                Disposable disposable = disposableList.get(i);
+                if (disposable != null && !disposable.isDisposed()) {
+                    disposable.dispose();
+                }
+            }
+        } catch (Exception ignored) {
+        }
     }
 
     protected void showToast(String msg) {
@@ -72,6 +84,18 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     protected void closeEventBus() {
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);
+        }
+    }
+
+    /**
+     * 关闭粘性事件的EventBus
+     * @param eventType 粘性事件
+     */
+    protected <C> void closeStickyEventBus(Class<C> eventType){
+        closeEventBus();
+        C stickyEvent = EventBus.getDefault().getStickyEvent(eventType);
+        if (stickyEvent != null){
+            EventBus.getDefault().removeStickyEvent(stickyEvent);
         }
     }
 

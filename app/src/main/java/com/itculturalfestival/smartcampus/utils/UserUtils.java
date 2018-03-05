@@ -1,13 +1,12 @@
 package com.itculturalfestival.smartcampus.utils;
 
 import android.content.SharedPreferences;
-import android.preference.*;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.itculturalfestival.smartcampus.other.MyApplication;
+import com.itculturalfestival.smartcampus.MyApplication;
 
 /**
  * Created by vegen on 2018/3/2.

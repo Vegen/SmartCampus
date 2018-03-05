@@ -1,8 +1,7 @@
-package com.itculturalfestival.smartcampus.other;
+package com.itculturalfestival.smartcampus;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
 import android.support.multidex.MultiDexApplication;
 import android.widget.Toast;
 
