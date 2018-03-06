@@ -2,8 +2,8 @@ package com.vegen.smartcampus.baseframework.network;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.orhanobut.logger.Logger;
 import com.vegen.smartcampus.baseframework.BuildConfig;
+import com.vegen.smartcampus.baseframework.utils.LogUtils;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -33,9 +33,9 @@ public class HttpError {
                     return httpException.getMessage();
                 }
             } catch (IOException e) {
-                Logger.e(e.getMessage());
+                LogUtils.e(e.getMessage());
             } catch (JsonSyntaxException e) {
-                Logger.e(e.getMessage());
+                LogUtils.e(e.getMessage());
                 return throwable.getMessage();
             } catch (Exception e){
                 return "未知错误";
@@ -61,9 +61,9 @@ public class HttpError {
                     return -1;
                 }
             } catch (IOException e) {
-                Logger.e(e.getMessage());
+                LogUtils.e(e.getMessage());
             } catch (JsonSyntaxException e) {
-                Logger.e(e.getMessage());
+                LogUtils.e(e.getMessage());
                 return -1;
             } catch (Exception e){
                 return -1;

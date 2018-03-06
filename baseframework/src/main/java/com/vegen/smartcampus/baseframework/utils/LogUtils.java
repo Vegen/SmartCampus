@@ -1,4 +1,4 @@
-package com.itculturalfestival.smartcampus.utils;
+package com.vegen.smartcampus.baseframework.utils;
 
 import android.util.Log;
 
@@ -9,17 +9,17 @@ import android.util.Log;
  * @describe: Log统一管理类
  */
 
-public class L
+public class LogUtils
 {
 
-    private L()
+    private LogUtils()
     {
         /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
     public static boolean isDebug = true;// 是否需要打印bug，可以在application的onCreate函数里面初始化
-    private static final String TAG = "way";
+    private static final String TAG = "SmartCampus";
 
     // 下面四个是默认tag的函数
     public static void i(String msg)

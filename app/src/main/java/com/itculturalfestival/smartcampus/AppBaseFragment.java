@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.itculturalfestival.smartcampus.event.EmptyEvent;
-import com.orhanobut.logger.Logger;
 import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
 import com.vegen.smartcampus.baseframework.mvp.view.BaseMvpFragment;
+import com.vegen.smartcampus.baseframework.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -105,7 +105,7 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.app_fragment_base_loading, container, false);
         if (layoutId() == 0) {
-            Logger.e("Content Layout Id is 0");
+            LogUtils.e("Content Layout Id is 0");
         }
 
         contentView = inflater.inflate(layoutId(), null);
@@ -119,7 +119,7 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
 
         errorView = inflater.inflate(getErrorLayoutId(), null);
         ((FrameLayout) root).addView(errorView);
-        errorView.setOnClickListener(v -> {
+        errorView.findViewById(R.id.iv_error).setOnClickListener(v -> {
             showLoadingView();
             lazyLoad();
         });

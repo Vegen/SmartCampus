@@ -92,4 +92,13 @@
         <item name="android:drawableRight">@mipmap/ic_delete_grey</item>
         <item name="android:paddingLeft">15dp</item>
     </style>
+
+    <style name="MyTabLayout" parent="android:Widget">
+        <item name="tabPaddingStart">8dp</item>
+        <item name="tabPaddingEnd">8dp</item>
+    </style>
+
+    <style name="MyCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">13sp</item>
+    </style>
 </resources>

@@ -2,6 +2,8 @@ package com.itculturalfestival.smartcampus.utils;
 
 import android.util.Log;
 
+import com.vegen.smartcampus.baseframework.utils.LogUtils;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -507,7 +509,7 @@ public class DateUtil {
         calendar.setTime(date);
 
         long past = calendar.getTimeInMillis();
-        L.e("showTime", "");
+        LogUtils.e("showTime", "");
         // 相差的秒数
         long time = (now - past) / 1000;
 

@@ -49,8 +49,6 @@ dependencies {
     // 万能 adapter
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'com.zhy:base-adapter:3.0.3'
-    // 汉字拼音
-    compile 'com.belerweb:pinyin4j:2.5.1'
     // 数据库
     compile 'org.litepal.android:core:1.6.1'
     // 多分包

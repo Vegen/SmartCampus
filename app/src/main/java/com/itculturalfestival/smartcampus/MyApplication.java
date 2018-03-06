@@ -5,8 +5,6 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.widget.Toast;
 
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
 import com.vegen.smartcampus.baseframework.BuildConfig;
 
 import org.litepal.LitePal;
@@ -42,11 +40,6 @@ public class MyApplication extends MultiDexApplication {
         // 初始化环信SDK
 //        initEasemob();
         instance = this;
-        Logger.addLogAdapter(new AndroidLogAdapter() {
-            @Override public boolean isLoggable(int priority, String tag) {
-                return BuildConfig.DEBUG;
-            }
-        });
         initHuanXin();
 //        EMOptions options = new EMOptions();
 //        // 默认添加好友时，是不需要验证的，改成需要验证

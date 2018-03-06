@@ -14,8 +14,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
-import com.itculturalfestival.smartcampus.bean.ContactBean;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,90 +67,6 @@ public class PhoneUtil {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    /**
-     * 得到手机通讯录联系人信息
-     */
-    public static List<ContactBean> getPhoneContacts(Context context) {
-        if (null == context) return null;
-        ContentResolver resolver = context.getContentResolver();
-        List<ContactBean> list = new ArrayList<>();
-        Cursor phoneCursor = null;
-        // 获取手机联系人
-        try {
-            phoneCursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PHONES_PROJECTION, null, null, null);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        if (phoneCursor != null) {
-            while (phoneCursor.moveToNext()) {
-                //得到手机号码
-                String phoneNumber = phoneCursor.getString(PHONES_NUMBER_INDEX);
-                //当手机号码为空的或者为空字段 跳过当前循环
-                if (TextUtils.isEmpty(phoneNumber)) continue;
-                //得到联系人名称
-                String contactName = phoneCursor.getString(PHONES_DISPLAY_NAME_INDEX).trim();
-                //联系人名称为空时跳过
-                if (TextUtils.isEmpty(contactName)) continue;
-
-                list.add(new ContactBean(contactName, phoneNumber));
-            }
-            phoneCursor.close();
-        }
-        return list;
-    }
-
-    /**
-     * 得到手机SIM卡联系人人信息
-     */
-    public static List<ContactBean> getSIMContacts(Context context) {
-        if (null == context) return null;
-        ContentResolver resolver = context.getContentResolver();
-        List<ContactBean> list = new ArrayList<>();
-
-        // 获取Sims卡联系人
-        Uri uri = Uri.parse("content://icc/adn");
-        Cursor phoneCursor = null;
-        try {
-            phoneCursor = resolver.query(uri, PHONES_PROJECTION, null, null, null);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        if (phoneCursor != null) {
-            while (phoneCursor.moveToNext()) {
-                // 得到手机号码
-                String phoneNumber = phoneCursor.getString(PHONES_NUMBER_INDEX).trim();
-                // 当手机号码为空的或者为空字段 跳过当前循环
-                if (TextUtils.isEmpty(phoneNumber))  continue;
-                // 得到联系人名称
-                String contactName = phoneCursor.getString(PHONES_DISPLAY_NAME_INDEX).trim();
-                //联系人名称为空时跳过
-                if (TextUtils.isEmpty(contactName)) continue;
-
-                list.add(new ContactBean(contactName, phoneNumber));
-            }
-            phoneCursor.close();
-        }
-
-        return list;
-    }
-
-    /**
-     * 获取手机和sim中的联系人
-     */
-    public static List<ContactBean> getAllContacts(Context context){
-        if (null == context) return null;
-        List<ContactBean> list = getPhoneContacts(context);
-        List<ContactBean> list1= getSIMContacts(context);
-        for (ContactBean bean : list1){
-            if (!list.contains(bean)){  //去重
-                list.add(bean);
-            }
-        }
-        return list;
     }
 
     /**
