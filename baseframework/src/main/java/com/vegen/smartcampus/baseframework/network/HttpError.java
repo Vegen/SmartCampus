@@ -38,15 +38,15 @@ public class HttpError {
                 LogUtils.e(e.getMessage());
                 return throwable.getMessage();
             } catch (Exception e){
-                return "未知错误";
+                return "请求错误";
             }
         }else if (throwable instanceof SocketTimeoutException ||
                 throwable instanceof UnknownHostException){
             return "请检查网络是否连通";
         }else{
-            return "未知错误";
+            return "请求错误";
         }
-        return "未知错误";
+        return "请求错误";
     }
 
     public static int getErrorCode(Throwable throwable) {

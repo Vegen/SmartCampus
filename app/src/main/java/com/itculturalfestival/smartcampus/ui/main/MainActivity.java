@@ -1,17 +1,27 @@
 package com.itculturalfestival.smartcampus.ui.main;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.itculturalfestival.smartcampus.AppBaseActivity;
 import com.itculturalfestival.smartcampus.R;
+import com.itculturalfestival.smartcampus.ui.view.BottomTab;
 import com.itculturalfestival.smartcampus.ui.view.NoScrollViewPager;
 import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
+import com.vegen.smartcampus.baseframework.utils.StatusBarUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,17 +31,40 @@ import butterknife.ButterKnife;
  */
 
 public class MainActivity extends AppBaseActivity {
-
     @Bind(R.id.viewpager)
     NoScrollViewPager viewpager;
-    @Bind(R.id.statusBar)
-    View statusBar;
+//    @Bind(R.id.bottom_tab)
+//    BottomTab bottomTab;
+//    @Bind(R.id.statusBar)
+//    View statusBar;
+//    @Bind(R.id.toolbar_title)
+//    TextView toolbarTitle;
+//    @Bind(R.id.toolbar)
+//    Toolbar toolbar;
+//    @Bind(R.id.toolbarLayout)
+//    LinearLayout toolbarLayout;
+//    @Bind(R.id.guide)
+//    ImageView guide;
+//    @Bind(R.id.container)
+//    RelativeLayout container;
+
+//    @Bind(R.id.viewpager)
+//    NoScrollViewPager viewpager;
+//    @Bind(R.id.statusBar)
+//    View statusBar;
+    @Nullable
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.ll_toolbarLayout)
-    LinearLayout llToolbarLayout;
-    @Bind(R.id.rl_contain)
-    RelativeLayout rlContain;
+//    @Bind(R.id.ll_toolbarLayout)
+//    LinearLayout llToolbarLayout;
+//    @Bind(R.id.rl_contain)
+//    RelativeLayout rlContain;
+//    @Bind(R.id.bottom_tab)
+//    BottomTab bottomTab;
+
+    private MainFragmentPageAdapter pageAdapter;
+    private int position = 0;
+    private int lastPosition;
 
     @Override
     protected int layoutId() {
@@ -42,19 +75,23 @@ public class MainActivity extends AppBaseActivity {
     private String __EVENTVALIDATION = "/wEdAAf0CaXkU5PaT/4b0hsN+IjH2aUoMsPIebwSkRVsbn16mhpjaipFQxK02QeDxcoLIJsTxX9BozEzFobEMlGSJ4J0aIjZHlHuBMdD9QgYwFiERGOF21brLkQf0lJ2Sf7fw+jxMTBHOaHQK9KhaYAlfWMSj1iA85wzhe4o3GnxujW67FwqTloEC+AG1QHO4sowUL4=";
 
     @Override
+    protected BasePresenter presenter() {
+        return null;
+    }
+
+    @Override
     protected void setupUI() {
         ButterKnife.bind(this);
+        // 透明状态栏
+//        StatusBarUtils.setTransparentStatusBar(this, false);
+        setDisplayHomeAsUpEnabled(false);
+        setTitle("智慧校园");
+//        setSupportActionBar(toolbar);
 
-
-        FragmentManager FM = getSupportFragmentManager();
-        //2.开启一个事务，通过调用beginTransaction方法开启。
-        FragmentTransaction MfragmentTransaction = FM.beginTransaction();
-        //把自己创建好的fragment创建一个对象
-        NewsFragment f1 = new NewsFragment();
-        //向容器内加入Fragment，一般使用add或者replace方法实现，需要传入容器的id和Fragment的实例。
-        MfragmentTransaction.add(R.id.rl_contain, f1);
-        //提交事务，调用commit方法提交。
-        MfragmentTransaction.commit();
+        setupViewPager();
+        setupBottomTab();
+        lastPosition = viewpager.getCurrentItem();
+        initToolbar();
 
         /*
 
@@ -126,8 +163,76 @@ public class MainActivity extends AppBaseActivity {
     }
 
     @Override
-    protected BasePresenter presenter() {
-        return null;
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+//        NewsFragment newsFragment = (NewsFragment) pageAdapter.instantiateItem(viewpager, 0);
+
+//        newsFragment.getRoot().addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                if (toolbarLayout != null) {
+//                    toolbarLayout.setAlpha(getStatusAlpha(homeFragment));
+//                }
+//            }
+//        });
+    }
+
+    private void initToolbar() {
+        if (getSupportActionBar() != null && pageAdapter != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            CharSequence title = pageAdapter.getPageTitle(position);
+//            if (title != null)
+//                toolbar.setTitle("首页");
+        }
+    }
+
+    private void setupViewPager() {
+
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(NewsFragment.getInstance());
+        fragments.add(TeamFragment.getInstance());
+        fragments.add(CircleFragment.getInstance());
+        fragments.add(MessageFragment.getInstance());
+        fragments.add(UserFragment.getInstance());
+
+        pageAdapter = new MainFragmentPageAdapter(getSupportFragmentManager(), fragments);
+        viewpager.setAdapter(pageAdapter);
+        viewpager.setOffscreenPageLimit(fragments.size());
+        viewpager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                changeToolbar(position);
+                if (position == 0) {
+                    // 设置成透明状态栏
+                    StatusBarUtils.setTransparentStatusBar(MainActivity.this, false);
+                } else {
+                    // 设置状态栏为主题色
+                    StatusBarUtils.setStatusBarColor(MainActivity.this, R.color.colorPrimary, false);
+                }
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+        });
+    }
+
+    private void changeToolbar(int position) {
+        lastPosition = position;
+//        toolbar.setVisibility(View.VISIBLE);
+    }
+
+    private void setupBottomTab() {
+//        bottomTab.setData(R.menu.app_bottombar_menu);
+//        bottomTab.setupViewPager(viewpager);
+//        bottomTab.setOnTabClickListener(((view, itemId, position1) ->{
+//            viewpager.setCurrentItem(position1, false);
+//        }));
+//
+//        bottomTab.selectTab(0);
     }
 
     @Override
@@ -135,5 +240,25 @@ public class MainActivity extends AppBaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    class MainFragmentPageAdapter extends FragmentStatePagerAdapter {
+
+        List<Fragment> fragments;
+
+        public MainFragmentPageAdapter(FragmentManager fm, List<Fragment> fragments) {
+            super(fm);
+            this.fragments = fragments;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
     }
 }

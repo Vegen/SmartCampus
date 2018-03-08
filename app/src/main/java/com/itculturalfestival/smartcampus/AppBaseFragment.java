@@ -106,6 +106,7 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
         root = inflater.inflate(R.layout.app_fragment_base_loading, container, false);
         if (layoutId() == 0) {
             LogUtils.e("Content Layout Id is 0");
+            return root;
         }
 
         contentView = inflater.inflate(layoutId(), null);
@@ -136,6 +137,7 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
         attemptLoad();
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+            swipeRefreshLayout.setOnRefreshListener(this);
         }
     }
 
@@ -150,8 +152,6 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
         errorView.setVisibility(View.GONE);
 
         PropertyValuesHolder p1 = PropertyValuesHolder.ofFloat("alpha", 1f, 0f);
-     /*   PropertyValuesHolder p2 = PropertyValuesHolder.ofFloat("scaleY", 1f, 0f);
-        PropertyValuesHolder p3 = PropertyValuesHolder.ofFloat("scaleX", 1f, 0f);*/
 
         ObjectAnimator objectAnimator = ObjectAnimator
                 .ofPropertyValuesHolder(loadingView, p1)
@@ -207,6 +207,26 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
         errorView.setVisibility(View.VISIBLE);
     }
 
+    public View getRoot(){
+        return root;
+    }
+
+    @Override
+    public void onRefresh() {
+        setSwipeRefreshLayoutRefreshing(true);
+    }
+
+    @Override
+    public void showLoading(String msg) {
+        super.showLoading(msg);
+        setSwipeRefreshLayoutRefreshing(true);
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        setSwipeRefreshLayoutRefreshing(false);
+    }
 
     @Override
     public void onDestroyView() {
@@ -214,9 +234,20 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
         ButterKnife.unbind(this);
     }
 
-    @Override
-    public void onRefresh() {
+    protected void setSwipeRefreshLayoutEnable(boolean enable) {
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setEnabled(enable);
+        }
+    }
 
+    protected void setSwipeRefreshLayoutRefreshing(boolean refreshing) {
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.post(() -> {
+                if (swipeRefreshLayout != null) {
+                    swipeRefreshLayout.setRefreshing(refreshing);
+                }
+            });
+        }
     }
 
     protected

@@ -2,6 +2,8 @@ package com.vegen.smartcampus.baseframework.utils;
 
 import android.util.Log;
 
+import com.vegen.smartcampus.baseframework.BuildConfig;
+
 /**
  * @creation_time: 2017/3/27
  * @author: Vegen
@@ -14,11 +16,11 @@ public class LogUtils
 
     private LogUtils()
     {
-        /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    public static boolean isDebug = true;// 是否需要打印bug，可以在application的onCreate函数里面初始化
+    public static boolean isDebug = false;
+
     private static final String TAG = "SmartCampus";
 
     // 下面四个是默认tag的函数

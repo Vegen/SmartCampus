@@ -42,6 +42,13 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <!--<style name="MainTheme">-->
+        <!--<item name="android:windowIsTranslucent">false</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+    <!--</style>-->
+
+
     <!-- 底部弹窗背景渐变动画 -->
     <style name="BottomPopBgStyle">
         <item name="android:windowEnterAnimation">@anim/gradient_not_transparent</item>

@@ -22,6 +22,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.itculturalfestival.smartcampus.Constant.*;
+
 /**
  * Created by vegen on 2018/3/6.
  */
@@ -46,36 +48,57 @@ public class NewsPresenter extends BasePresenterImpl<MainContract.View> implemen
                 .subscribe(new Consumer<Document>() {
                     @Override
                     public void accept(Document document) throws Exception {
+                        List<News> newsList = new ArrayList<>();        // 新闻列表
+
                         Element body = document.body();
-                        Element newslist = body.getElementById("ListNews").getElementById("leftbox").getElementById("photolist").getElementById("xxyw");
-                        Elements links = newslist.getElementsByTag("div").select("#photodiv");
-                        LogUtils.e("NewsPresenter", "" + links.size());
-                        String text = "";
-                        List<News> newsList = new ArrayList<>();
-                        for (Element link : links) {
-                            Elements photoLink = link.getElementById("photo").getElementsByTag("a");
-                            Element newsElement = photoLink.get(0);
-                            String title = newsElement.attr("title");
-                            String url = newsElement.attr("href");
-                            String pic = newsElement.getElementsByTag("img").get(0).attr("src");
-                            String date = link.getElementById("title").ownText();
+                        Element photoList = body.getElementById("ListNews").getElementById("leftbox").getElementById("photolist");
 
-                            text += title + "\n" + url + "\n" + pic + "\n" + date.substring(1, date.length() - 1) + "\n";
+                        // NEWS_TYPE_FOCUS 要闻
+                        newsList.addAll(getTagNews(photoList, "xxyw", NEWS_TYPE_FOCUS));
+                        // NEWS_TYPE_COMPREHENSIVE 综合
+                        newsList.addAll(getTagNews(photoList, "zhxw", NEWS_TYPE_COMPREHENSIVE));
+                        // NEWS_TYPE_FLASH 快讯
+                        newsList.addAll(getTagNews(photoList, "xykx", NEWS_TYPE_FLASH));
+                        // NEWS_TYPE_OTHER 其他
+                        newsList.addAll(getTagNews(photoList, "otherPic", NEWS_TYPE_OTHER));
 
-                            News news = new News(title, pic, url, date.substring(1, date.length() - 1));
-                            newsList.add(news);
+                        if (mView != null) {
+                            mView.showNewsList(newsList);
+                            mView.hideLoading();
                         }
-                        LogUtils.e("NewsPresenter", text);
-                        if (mView != null) mView.showNewsList(newsList);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        if (mView != null)
-                                mView.showMessage(HttpError.getErrorMessage(throwable));
+                        if (mView != null) {
+                            mView.showMessage(HttpError.getErrorMessage(throwable));
+                            mView.hideLoading();
+                        }
                     }
                 });
 
         mHttpLinkers.add(new DisposableHolder(disposable));
+    }
+
+    private List<News> getTagNews(Element photoList, String tag, String type){
+        List<News> newsList = new ArrayList<>();
+        Element focusNews = photoList.getElementById(tag);
+        Elements focusLinks = focusNews.getElementsByTag("div").select("#photodiv");
+        String text = "";
+        for (Element link : focusLinks) {
+            Elements photoLink = link.getElementById("photo").getElementsByTag("a");
+            Element newsElement = photoLink.get(0);
+            String title = newsElement.attr("title");
+            String url = newsElement.attr("href");
+            String pic = newsElement.getElementsByTag("img").get(0).attr("src");
+            String date = link.getElementById("title").ownText();
+
+            text += title + "\n" + url + "\n" + pic + "\n" + date.substring(1, date.length() - 1) + "\n";
+
+            News news = new News(type, title, pic, url, date.substring(1, date.length() - 1));
+            newsList.add(news);
+        }
+        LogUtils.e("NewsPresenter", type + "\n" + text);
+        return newsList;
     }
 }

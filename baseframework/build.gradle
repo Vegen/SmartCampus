@@ -27,14 +27,16 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1', {
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["support-v4"]
     compile rootProject.ext.dependencies["support:design"]
     compile rootProject.ext.dependencies["retrofit2:converter-gson"]
-    compile rootProject.ext.dependencies["retrofit2:adapter"]
+    compile (rootProject.ext.dependencies["retrofit2:adapter"]){
+        exclude group : 'com.squareup.okhttp3'  // 排除和 Bmob 重复包问题
+    }
     compile rootProject.ext.dependencies["rxjava2:rxandroid"]
     compile rootProject.ext.dependencies["rxjava2:rxjava"]
 
@@ -44,13 +46,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     // butterknife
     compile 'com.jakewharton:butterknife:7.0.1'
-    // Fragment框架
-    // 如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
-    compile 'me.yokeyword:fragmentation-core:1.0.7'
-    // 如果想使用SwipeBack 滑动边缘退出Fragment/Activity功能，完整的添加规则如下：
-    compile 'me.yokeyword:fragmentation:1.0.7'
-    // SwipeBack基于fragmentation, 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
-    compile 'me.yokeyword:fragmentation-swipeback:1.0.7'
     // 沉浸式状态栏
     compile 'com.gyf.barlibrary:barlibrary:2.3.0'
 }

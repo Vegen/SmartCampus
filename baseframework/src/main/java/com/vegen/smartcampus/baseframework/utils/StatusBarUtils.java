@@ -21,7 +21,7 @@ public class StatusBarUtils {
         ImmersionBar.with(activity)
                 .reset()                    // 重置所以沉浸式参数
                 .transparentStatusBar()     // 透明状态栏，不写默认透明色
-                .statusBarDarkFont(true, statusAlpha)    // 如果不支持状态栏字体变色可以使用statusAlpha来指定状态栏透明度，比如白色状态栏的时候可以用到
+                .statusBarDarkFont(false, statusAlpha)    // 如果不支持状态栏字体变色可以使用statusAlpha来指定状态栏透明度，比如白色状态栏的时候可以用到
                 .supportActionBar(supportActionBar)
                 .init();
     }
@@ -45,7 +45,7 @@ public class StatusBarUtils {
      * @param barColor
      */
     public static void setStatusBarColor(@NonNull Activity activity, int barColor, boolean supportActionBar){
-        // 设置状态栏为白色
+        // 设置状态栏颜色色
         ImmersionBar.with(activity).reset()
                 .statusBarColor(barColor)
                 .statusBarDarkFont(true, statusAlpha)

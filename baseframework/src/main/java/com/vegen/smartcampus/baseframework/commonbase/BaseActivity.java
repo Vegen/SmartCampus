@@ -53,7 +53,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setDisplayHomeAsUpEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(layoutId());
         ButterKnife.bind(this);
