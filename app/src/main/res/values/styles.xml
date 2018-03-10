@@ -15,7 +15,7 @@
 
         <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
 
-        <item name="actionMenuTextColor">@color/Black_FF333333</item>
+        <item name="actionMenuTextColor">@color/white</item>
 
         <item name="android:windowContentOverlay">@null</item>
     </style>

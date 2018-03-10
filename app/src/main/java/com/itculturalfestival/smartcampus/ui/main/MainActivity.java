@@ -84,14 +84,12 @@ public class MainActivity extends AppBaseActivity {
         ButterKnife.bind(this);
         // 透明状态栏
 //        StatusBarUtils.setTransparentStatusBar(this, false);
-        setDisplayHomeAsUpEnabled(false);
         setTitle("智慧校园");
 //        setSupportActionBar(toolbar);
 
         setupViewPager();
         setupBottomTab();
         lastPosition = viewpager.getCurrentItem();
-        initToolbar();
 
         /*
 
@@ -177,15 +175,6 @@ public class MainActivity extends AppBaseActivity {
 //                }
 //            }
 //        });
-    }
-
-    private void initToolbar() {
-        if (getSupportActionBar() != null && pageAdapter != null) {
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            CharSequence title = pageAdapter.getPageTitle(position);
-//            if (title != null)
-//                toolbar.setTitle("首页");
-        }
     }
 
     private void setupViewPager() {

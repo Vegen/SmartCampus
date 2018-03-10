@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/SmartCampus.iml" filepath="$PROJECT_DIR$/SmartCampus.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseframework/baseframework.iml" filepath="$PROJECT_DIR$/baseframework/baseframework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/easeui/easeui.iml" filepath="$PROJECT_DIR$/easeui/easeui.iml" />
     </modules>
   </component>
 </project>

@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import com.itculturalfestival.smartcampus.AppBaseFragment;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.entity.News;
+import com.itculturalfestival.smartcampus.entity.NewsList;
 
 import java.util.List;
 
@@ -32,10 +33,6 @@ public class NewsFragment extends AppBaseFragment<MainContract.Presenter> implem
         return fragment;
     }
 
-    @Override
-    public void showNewsList(List<News> newsList) {
-        showContentView();
-    }
 
     @Override
     protected MainContract.Presenter presenter() {
@@ -65,5 +62,10 @@ public class NewsFragment extends AppBaseFragment<MainContract.Presenter> implem
 
     protected void loadData() {
         presenter().getNewsList(NEWS_DATA_URL);
+    }
+
+    @Override
+    public void showNewsList(List<NewsList> newsListList) {
+        showContentView();
     }
 }

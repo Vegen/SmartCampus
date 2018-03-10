@@ -1,6 +1,7 @@
 package com.itculturalfestival.smartcampus.ui.main;
 
 import com.itculturalfestival.smartcampus.entity.News;
+import com.itculturalfestival.smartcampus.entity.NewsList;
 import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
 import com.vegen.smartcampus.baseframework.mvp.view.BaseView;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class MainContract {
     interface View extends BaseView {
-        void showNewsList(List<News> newsList);
+        void showNewsList(List<NewsList> newsListList);
     }
 
     interface Presenter extends BasePresenter {
