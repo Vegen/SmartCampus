@@ -20,7 +20,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:paddingRight="15dp"
-            android:src="@mipmap/ic_back" />
+            android:src="@mipmap/app_ic_back" />
 
         <TextView
             android:id="@+id/title"

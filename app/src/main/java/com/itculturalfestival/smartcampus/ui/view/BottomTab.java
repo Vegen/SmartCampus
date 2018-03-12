@@ -122,6 +122,15 @@ public class BottomTab extends LinearLayout {
         changeRedPoint(position, false);
     }
 
+    public String getTabText(int position){
+        if (isInvalidPosition(position)) {
+            LogUtils.e("position is invalid");
+            return null;
+        }
+        Tab tab = tabs[position];
+        return tab.title;
+    }
+
     public void changeRedPoint(int position, boolean isShow) {
         if (isInvalidPosition(position)) {
             LogUtils.e("position is invalid");

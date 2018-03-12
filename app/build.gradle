@@ -66,5 +66,4 @@ dependencies {
     compile 'org.jsoup:jsoup:1.11.2'
 
     compile project(':baseframework')
-//    compile project(':easeui')
 }

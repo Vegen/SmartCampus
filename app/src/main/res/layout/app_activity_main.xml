@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    tools:context=".ui.main.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,67 +12,41 @@
         android:orientation="vertical">
 
         <com.itculturalfestival.smartcampus.ui.view.NoScrollViewPager
-            android:id="@+id/viewpager"
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-
-        <!--<com.itculturalfestival.smartcampus.ui.view.BottomTab-->
-            <!--android:id="@+id/bottom_tab"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
+        <com.itculturalfestival.smartcampus.ui.view.BottomTab
+            android:id="@+id/bottom_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-    <!--<LinearLayout-->
-        <!--android:id="@+id/toolbarLayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:alpha="0"-->
-        <!--tools:alpha="1"-->
-        <!--android:orientation="vertical">-->
+    <LinearLayout
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:alpha="1"
+        android:alpha="0"
+        android:orientation="vertical">
 
-        <!--<View-->
-            <!--android:id="@+id/statusBar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0px"-->
-            <!--android:background="@color/colorPrimaryDark"/>-->
+        <View
+            android:id="@+id/statusBar"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:background="@color/colorPrimaryDark"/>
 
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:background="?attr/colorPrimary"-->
-            <!--app:navigationIcon="@mipmap/ic_back"-->
-            <!--android:elevation="0dp"-->
-            <!--android:navigationIcon="@mipmap/ic_back"-->
-            <!--app:titleTextColor="@color/Black_FF333333"-->
-            <!--tools:targetApi="lollipop">-->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="0dp"
+            tools:targetApi="lollipop">
 
-            <!--<TextView-->
-                <!--android:id="@+id/toolbar_title"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:singleLine="true"-->
-                <!--android:textColor="@color/Black_FF333333"-->
-                <!--android:textSize="20sp" />-->
+        </android.support.v7.widget.Toolbar>
 
-        <!--</android.support.v7.widget.Toolbar>-->
-        <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="3dp"-->
-            <!--android:layout_below="@+id/toolbar"-->
-            <!--android:background="@color/bg_color">-->
-        <!--</View>-->
-
-    <!--</LinearLayout>-->
-    <!--<ImageView-->
-        <!--android:id="@+id/guide"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:visibility="gone"-->
-        <!--tools:ignore="ContentDescription" />-->
+    </LinearLayout>
 
 </RelativeLayout>
