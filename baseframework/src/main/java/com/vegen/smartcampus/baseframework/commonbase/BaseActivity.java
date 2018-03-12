@@ -53,64 +53,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setDisplayHomeAsUpEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(layoutId());
         ButterKnife.bind(this);
-        setDisplayHomeAsUpEnabled(true);
         setupUI();
         initData();
-//        initTitleText();
-        // 设置状态栏为主题色
-//        initStatusBarColor();
-    }
-
-    /**
-     * 设置状态栏
-     */
-    protected void initStatusBarColor(){
-        // 设置状态栏为主题色
-        StatusBarUtils.setStatusBarColor(this, R.color.framework_colorPrimary, true);
-    }
-
-    protected void initTitleText(){
-        if (getSupportActionBar() == null) return;
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        actionbarLayout = LayoutInflater.from(this).inflate(R.layout.framework_layout_actionbar_title, null);
-        getSupportActionBar().setCustomView(
-                actionbarLayout,
-                new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        ActionBar.LayoutParams mP = (ActionBar.LayoutParams) actionbarLayout
-                .getLayoutParams();
-        mP.gravity = mP.gravity & ~Gravity.HORIZONTAL_GRAVITY_MASK
-                | Gravity.CENTER_HORIZONTAL;
-
-        getSupportActionBar().setCustomView(actionbarLayout, mP);
-//        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.top_dhl_icon_back);  //设置自定义的返回键图标
-    }
-
-    protected void initTitleTextStr(CharSequence title){
-        TextView textView = null;
-        if (actionbarLayout != null){
-            textView = actionbarLayout.findViewById(R.id.actionbar_title);
-            textView.setText(title);
-        }
-
-    }
-
-    protected void initTitleTextStr(int titleId){
-        if (actionbarLayout != null){
-            TextView textView = actionbarLayout.findViewById(R.id.actionbar_title);
-            textView.setText(titleId);
-        }
-    }
-
-    @Override
-    public void setTitle(CharSequence title) {
-//        initTitleTextStr(title);
-        super.setTitle(title);
     }
 
     /**
