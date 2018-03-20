@@ -46,6 +46,8 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
 
     long now;
 
+    protected String tag = this.getClass().getSimpleName();
+
     @Nullable
     @Bind(R.id.swipeRefreshLayout)
     protected SwipeRefreshLayout swipeRefreshLayout;

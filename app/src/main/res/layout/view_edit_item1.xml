@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.itculturalfestival.smartcampus.ui.view.DeletableEditText
+<com.itculturalfestival.smartcampus.ui.custom.DeletableEditText
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,4 +8,4 @@
     android:lineSpacingExtra="10dp"
     android:textColor="#444"
     android:textCursorDrawable="@drawable/cursor_shape" >
-</com.itculturalfestival.smartcampus.ui.view.DeletableEditText>
+</com.itculturalfestival.smartcampus.ui.custom.DeletableEditText>

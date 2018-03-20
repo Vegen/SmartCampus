@@ -46,9 +46,6 @@ dependencies {
     })
     // 轮播
     compile 'com.youth.banner:banner:1.4.9'
-    // 万能 adapter
-    compile 'com.zhy:base-rvadapter:3.0.3'
-    compile 'com.zhy:base-adapter:3.0.3'
     // 数据库
     compile 'org.litepal.android:core:1.6.1'
     // 多分包
@@ -64,6 +61,10 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     // jsoup 解析 html
     compile 'org.jsoup:jsoup:1.11.2'
+    // 下拉刷新上拉加载
+    compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    // 卡片布局
+    compile 'com.android.support:cardview-v7:25.3.1'
 
     compile project(':baseframework')
 }

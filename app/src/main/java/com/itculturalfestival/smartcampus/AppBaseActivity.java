@@ -17,10 +17,25 @@ public abstract class AppBaseActivity<T extends BasePresenter> extends BaseMvpAc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //初始化沉浸式
+        if (isImmersionBarEnabled())
+            initImmersionBar();
+    }
+
+    protected void initImmersionBar() {
+        //在BaseActivity里初始化
         mImmersionBar = ImmersionBar.with(this);
-        mImmersionBar.fitsSystemWindows(true);
-        mImmersionBar.transparentBar();
         mImmersionBar.init();
+    }
+
+    /**
+     * 是否可以使用沉浸式，可被重写
+     * Is immersion bar enabled boolean.
+     *
+     * @return the boolean
+     */
+    protected boolean isImmersionBarEnabled() {
+        return true;
     }
 
     @Override

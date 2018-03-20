@@ -7,7 +7,7 @@
         android:layout_height="@dimen/item_team_size"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-        <com.itculturalfestival.smartcampus.ui.view.CircleImageView
+        <com.itculturalfestival.smartcampus.ui.custom.CircleImageView
             android:layout_marginLeft="10dp"
             android:id="@+id/civ_head"
             android:layout_width="@dimen/circle_imageview_size"

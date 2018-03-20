@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
@@ -14,4 +13,5 @@
             android:text="test"
             android:id="@+id/tv_test"/>
     </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>

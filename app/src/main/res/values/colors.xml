@@ -9,7 +9,7 @@
     <color name="bg_color">#F3F3F3</color>
 
     <!--线条颜色 -->
-    <color name="line">#276c6969</color>
+    <color name="line">#ededed</color>
     <color name="white_half">#7fffffff</color>
     <color name="black">#333333</color>
     <color name="theme_half">#7f12b7f5</color>
@@ -24,4 +24,6 @@
 
     <!--Black-->
     <color name="Black_FF333333">#FF333333</color>
+    <color name="tans">#00000000</color>
+    <color name="colorBarText">#F0F5E5</color>
 </resources>

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.bean.team.ExpandableListBean;
-import com.itculturalfestival.smartcampus.ui.view.CircleImageView;
+import com.itculturalfestival.smartcampus.ui.custom.CircleImageView;
 
 import java.util.List;
 

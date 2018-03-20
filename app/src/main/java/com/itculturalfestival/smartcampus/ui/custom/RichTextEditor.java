@@ -1,7 +1,6 @@
-package com.itculturalfestival.smartcampus.ui.view;
+package com.itculturalfestival.smartcampus.ui.custom;
 
 import android.animation.LayoutTransition;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

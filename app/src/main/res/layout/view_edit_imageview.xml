@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <com.itculturalfestival.smartcampus.ui.view.DataImageView
+    <com.itculturalfestival.smartcampus.ui.custom.DataImageView
         android:id="@+id/edit_imageView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

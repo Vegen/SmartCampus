@@ -1,4 +1,4 @@
-package com.itculturalfestival.smartcampus.ui.view;
+package com.itculturalfestival.smartcampus.ui.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -1,30 +1,20 @@
 package com.vegen.smartcampus.baseframework.commonbase;
 
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.vegen.smartcampus.baseframework.R;
 import com.vegen.smartcampus.baseframework.network.HttpError;
 import com.vegen.smartcampus.baseframework.ui.LoadingProgressDialog;
-import com.vegen.smartcampus.baseframework.utils.StatusBarUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +40,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     private LoadingProgressDialog loadingProgressDialog;
 
     protected View actionbarLayout;
+
+    private InputMethodManager imm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        this.imm = null;
         ButterKnife.unbind(this);
         closeEventBus();
         disposeAll();

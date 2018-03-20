@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/colorPrimary"
+    app:contentInsetStart="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="智慧校园"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:paddingLeft="16dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/app_shape_seek"
+            android:cursorVisible="false"
+            android:drawableLeft="@mipmap/app_ic_seek"
+            android:drawablePadding="10dp"
+            android:hint="搜索更多资讯"
+            android:padding="8dp"
+            android:textColor="@color/colorBarText"
+            android:textColorHint="@color/colorBarText"
+            android:textSize="12sp" />
+    </LinearLayout>
+</android.support.v7.widget.Toolbar>

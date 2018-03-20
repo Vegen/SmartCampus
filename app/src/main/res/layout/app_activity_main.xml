@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.MainActivity"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.itculturalfestival.smartcampus.ui.custom.NoScrollViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-        <com.itculturalfestival.smartcampus.ui.view.NoScrollViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <com.itculturalfestival.smartcampus.ui.view.BottomTab
-            android:id="@+id/bottom_tab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/toolbarLayout"
+    <com.itculturalfestival.smartcampus.ui.custom.BottomTab
+        android:id="@+id/bottom_tab"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:alpha="1"
-        android:alpha="0"
-        android:orientation="vertical">
+        android:layout_height="wrap_content" />
+    <!--<LinearLayout-->
+        <!--android:id="@+id/toolbarLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--tools:alpha="1"-->
+        <!--android:alpha="0"-->
+        <!--android:orientation="vertical">-->
 
-        <View
-            android:id="@+id/statusBar"
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:background="@color/colorPrimaryDark"/>
+        <!--<View-->
+            <!--android:id="@+id/statusBar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0px"-->
+            <!--android:background="@color/colorPrimaryDark"/>-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="0dp"
-            tools:targetApi="lollipop">
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="?attr/colorPrimary"-->
+            <!--android:elevation="0dp"-->
+            <!--tools:targetApi="lollipop">-->
 
-        </android.support.v7.widget.Toolbar>
+        <!--</android.support.v7.widget.Toolbar>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
-</RelativeLayout>
+</LinearLayout>

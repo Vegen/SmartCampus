@@ -20,8 +20,11 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="MainTheme" parent="AppTheme.NoActionBar">
-        <item name="android:windowIsTranslucent">false</item>
+    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">

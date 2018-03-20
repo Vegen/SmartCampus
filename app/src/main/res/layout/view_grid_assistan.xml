@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.itculturalfestival.smartcampus.ui.view.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.itculturalfestival.smartcampus.ui.custom.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,4 +17,4 @@
         android:layout_marginTop="2dp"
         android:textColor="@color/black"
         android:textSize="13sp"/>
-</com.itculturalfestival.smartcampus.ui.view.SquareLayout>
+</com.itculturalfestival.smartcampus.ui.custom.SquareLayout>
