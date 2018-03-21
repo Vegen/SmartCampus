@@ -6,7 +6,7 @@ package com.itculturalfestival.smartcampus.entity;
  */
 
 public class News {
-    private String news_id;
+    private Integer news_type;
     private String news_title;
     private String news_pic;
     private String news_url;
@@ -21,20 +21,20 @@ public class News {
         this.news_date = date;
     }
 
-    public News(String id, String title, String pic, String url, String date){
-        this.news_id = id;
+    public News(Integer type, String title, String pic, String url, String date){
+        this.news_type = type;
         this.news_title = title;
         this.news_pic = pic;
         this.news_url = url;
         this.news_date = date;
     }
 
-    public String getNews_id() {
-        return news_id;
+    public Integer getNews_type() {
+        return news_type;
     }
 
-    public void setNews_id(String news_id) {
-        this.news_id = news_id;
+    public void setNews_type(Integer news_type) {
+        this.news_type = news_type;
     }
 
     public String getNews_title() {

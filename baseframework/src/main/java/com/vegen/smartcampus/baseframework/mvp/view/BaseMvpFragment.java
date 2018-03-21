@@ -12,7 +12,7 @@ import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
  * Created by vegen on 2018/2/23.
  */
 
-public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragment implements BaseView {
+public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragment {
 
     protected T mPresenter;
 

@@ -12,6 +12,7 @@ import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.adapter.BaseFragmentPagerAdapter;
 import com.itculturalfestival.smartcampus.ui.custom.BottomTab;
 import com.itculturalfestival.smartcampus.ui.custom.NoScrollViewPager;
+import com.itculturalfestival.smartcampus.ui.main.home.HomeFragment;
 import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
 
 import java.util.ArrayList;
@@ -48,16 +49,18 @@ public class MainActivity extends AppBaseActivity {
     }
 
     @Override
+    protected boolean isImmersionBarEnabled() {
+        return false;
+    }
+
+    @Override
     protected void setupUI() {
         setDisplayHomeAsUpEnabled(false);
-
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.init();
         setupViewPager();
         setupBottomTab();
         lastPosition = viewPager.getCurrentItem();
-//        mStatusHeight = CommonUtils.getStatusBarHeight(this);
-//        statusBar.getLayoutParams().height = mStatusHeight;
-//        setStatusBarTranslucent(true);
-
     }
 
     @Override

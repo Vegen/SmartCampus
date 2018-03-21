@@ -26,4 +26,5 @@
     <color name="Black_FF333333">#FF333333</color>
     <color name="tans">#00000000</color>
     <color name="colorBarText">#F0F5E5</color>
+    <color name="date_text_color">#999999</color>
 </resources>

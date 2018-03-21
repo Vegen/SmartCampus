@@ -1,4 +1,4 @@
-package com.itculturalfestival.smartcampus.ui.main;
+package com.itculturalfestival.smartcampus.ui.main.home;
 
 import com.itculturalfestival.smartcampus.entity.News;
 import com.itculturalfestival.smartcampus.entity.NewsList;
@@ -11,9 +11,10 @@ import java.util.List;
  * Created by vegen on 2018/3/6.
  */
 
-public class MainContract {
+public class HomeContract {
     interface View extends BaseView {
         void showNewsList(List<NewsList> newsListList);
+        void moreNewsClassId(List<String> strings);
     }
 
     interface Presenter extends BasePresenter {

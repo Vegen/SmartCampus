@@ -9,13 +9,13 @@ import com.itculturalfestival.smartcampus.entity.News;
 import com.itculturalfestival.smartcampus.utils.GlideUtils;
 
 /**
- * Created by vegen on 2018/3/20.
+ * Created by vegen on 2018/3/21.
  */
 
-public class HomeNewsAdapter extends BaseQuickAdapter<News, BaseViewHolder> {
+public class MoreNewsAdapter extends BaseQuickAdapter<News, BaseViewHolder> {
 
-    public HomeNewsAdapter() {
-        super(R.layout.app_item_home_news);
+    public MoreNewsAdapter() {
+        super(R.layout.app_item_more_news);
     }
 
     @Override

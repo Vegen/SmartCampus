@@ -7,21 +7,21 @@ import java.util.List;
  */
 
 public class NewsList {
-    private String newsType;
+    private int newsType;
     private List<News> newsList;
 
     public NewsList(){}
 
-    public NewsList(String type, List<News> newsList){
+    public NewsList(int type, List<News> newsList){
         this.newsType = type;
         this.newsList = newsList;
     }
 
-    public String getNewsType() {
+    public int getNewsType() {
         return newsType;
     }
 
-    public void setNewsType(String newsType) {
+    public void setNewsType(int newsType) {
         this.newsType = newsType;
     }
 

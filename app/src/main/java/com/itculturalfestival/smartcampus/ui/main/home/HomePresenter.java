@@ -1,4 +1,4 @@
-package com.itculturalfestival.smartcampus.ui.main;
+package com.itculturalfestival.smartcampus.ui.main.home;
 
 import com.itculturalfestival.smartcampus.entity.News;
 import com.itculturalfestival.smartcampus.entity.NewsList;
@@ -27,9 +27,9 @@ import static com.itculturalfestival.smartcampus.Constant.*;
  * Created by vegen on 2018/3/6.
  */
 
-public class NewsPresenter extends BasePresenterImpl<MainContract.View> implements MainContract.Presenter  {
+public class HomePresenter extends BasePresenterImpl<HomeContract.View> implements HomeContract.Presenter  {
 
-    public NewsPresenter(MainContract.View view) {
+    public HomePresenter(HomeContract.View view) {
         super(view);
     }
 
@@ -42,10 +42,10 @@ public class NewsPresenter extends BasePresenterImpl<MainContract.View> implemen
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(document -> {
-                    List<NewsList> newsListList = new ArrayList<>();        // 新闻列表
                     Element body = document.body();
                     Element photoList = body.getElementById("ListNews").getElementById("leftbox").getElementById("photolist");
 
+                    List<NewsList> newsListList = new ArrayList<>();        // 新闻列表
                     // NEWS_TYPE_FOCUS 要闻
                     newsListList.add(new NewsList(NEWS_TYPE_FOCUS, getTagNews(photoList, "xxyw", NEWS_TYPE_FOCUS)));
                     // NEWS_TYPE_COMPREHENSIVE 综合
@@ -55,8 +55,16 @@ public class NewsPresenter extends BasePresenterImpl<MainContract.View> implemen
                     // NEWS_TYPE_OTHER 其他
                     newsListList.add(new NewsList(NEWS_TYPE_OTHER, getTagNews(photoList, "otherPic", NEWS_TYPE_OTHER)));
 
+                    List<String> strings = new ArrayList<>();
+                    Elements elements = photoList.select("div.more");
+                    for (Element element : elements){
+                        String id = element.getElementsByTag("a").attr("href");
+                        strings.add(id);
+                    }
+
                     if (mView != null) {
                         mView.showNewsList(newsListList);
+                        mView.moreNewsClassId(strings);
                         mView.hideLoading();
                     }
                 }, throwable -> {
@@ -69,7 +77,7 @@ public class NewsPresenter extends BasePresenterImpl<MainContract.View> implemen
         mHttpLinkers.add(new DisposableHolder(disposable));
     }
 
-    private List<News> getTagNews(Element photoList, String tag, String type){
+    private List<News> getTagNews(Element photoList, String tag, int type){
         List<News> newsList = new ArrayList<>();
         Element focusNews = photoList.getElementById(tag);
         Elements focusLinks = focusNews.getElementsByTag("div").select("#photodiv");
@@ -87,7 +95,8 @@ public class NewsPresenter extends BasePresenterImpl<MainContract.View> implemen
             News news = new News(type, title, pic, url, date.substring(1, date.length() - 1));
             newsList.add(news);
         }
-        LogUtils.e("NewsPresenter", type + "\n" + text);
+        LogUtils.e("HomePresenter", type + "\n" + text);
         return newsList;
     }
+
 }

@@ -25,6 +25,7 @@ public abstract class AppBaseActivity<T extends BasePresenter> extends BaseMvpAc
     protected void initImmersionBar() {
         //在BaseActivity里初始化
         mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.keyboardEnable(true).statusBarColor(R.color.colorPrimary).supportActionBar(true);
         mImmersionBar.init();
     }
 

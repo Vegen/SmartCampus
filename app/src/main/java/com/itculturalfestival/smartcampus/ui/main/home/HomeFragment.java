@@ -1,4 +1,4 @@
-package com.itculturalfestival.smartcampus.ui.main;
+package com.itculturalfestival.smartcampus.ui.main.home;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -11,10 +11,10 @@ import android.view.View;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.itculturalfestival.smartcampus.AppBaseFragment;
+import com.itculturalfestival.smartcampus.Constant;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.adapter.BaseFragmentPagerAdapter;
 import com.itculturalfestival.smartcampus.entity.NewsList;
-import com.itculturalfestival.smartcampus.ui.main.news.NewsFragment;
 import com.itculturalfestival.smartcampus.utils.GlideImageLoader;
 import com.vegen.smartcampus.baseframework.utils.SystemUtils;
 import com.youth.banner.Banner;
@@ -28,10 +28,10 @@ import static com.itculturalfestival.smartcampus.network.Url.ROOT_URL;
 
 /**
  * Created by vegen on 2018/3/6.
- * 首页-资讯
+ * 首页
  */
 
-public class HomeFragment extends AppBaseFragment<MainContract.Presenter> implements MainContract.View, AppBarLayout.OnOffsetChangedListener {
+public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implements HomeContract.View, AppBarLayout.OnOffsetChangedListener {
 
     private final String NEWS_DATA_URL = ROOT_URL + "/PhotoZhjnc.aspx";
 
@@ -50,9 +50,9 @@ public class HomeFragment extends AppBaseFragment<MainContract.Presenter> implem
     @Bind(R.id.view_top)
     View viewTop;
     private BaseFragmentPagerAdapter fragmentPagerAdapter;
+    private NewsFragment flashFragment;
     private NewsFragment focusFragment;
     private NewsFragment comprehensiveFragment;
-    private NewsFragment flashFragment;
     private NewsFragment otherFragment;
 
     public static HomeFragment getInstance() {
@@ -63,8 +63,8 @@ public class HomeFragment extends AppBaseFragment<MainContract.Presenter> implem
     }
 
     @Override
-    protected MainContract.Presenter presenter() {
-        if (mPresenter == null) mPresenter = new NewsPresenter(this);
+    protected HomeContract.Presenter presenter() {
+        if (mPresenter == null) mPresenter = new HomePresenter(this);
         return mPresenter;
     }
 
@@ -87,6 +87,7 @@ public class HomeFragment extends AppBaseFragment<MainContract.Presenter> implem
 
     @Override
     protected void setupUI() {
+        showContentView();
         ImmersionBar.setTitleBar(getActivity(), toolbar);
         float marginHeight = SystemUtils.getStatusBarHeight(getContext()) + SystemUtils.getActionBarHeight(getContext());
         viewTop.getLayoutParams().height = (int) marginHeight;
@@ -101,13 +102,13 @@ public class HomeFragment extends AppBaseFragment<MainContract.Presenter> implem
         banner.startAutoPlay();
 
         List<Fragment> fragments = new ArrayList<>();
-        focusFragment = NewsFragment.getInstance();
-        comprehensiveFragment = NewsFragment.getInstance();
-        flashFragment = NewsFragment.getInstance();
-        otherFragment = NewsFragment.getInstance();
+        flashFragment = NewsFragment.getInstance(Constant.NEWS_TYPE_FLASH);
+        focusFragment = NewsFragment.getInstance(Constant.NEWS_TYPE_FOCUS);
+        comprehensiveFragment = NewsFragment.getInstance(Constant.NEWS_TYPE_COMPREHENSIVE);
+        otherFragment = NewsFragment.getInstance(Constant.NEWS_TYPE_OTHER);
+        fragments.add(flashFragment);
         fragments.add(focusFragment);
         fragments.add(comprehensiveFragment);
-        fragments.add(flashFragment);
         fragments.add(otherFragment);
         List<String> strings = new ArrayList<>();
         strings.add("快讯");
@@ -123,12 +124,22 @@ public class HomeFragment extends AppBaseFragment<MainContract.Presenter> implem
 
     @Override
     public void showNewsList(List<NewsList> newsListList) {
-        showContentView();
-        focusFragment.getHomeNewsAdapter().setNewData(newsListList.get(0).getNewsList());
-        comprehensiveFragment.getHomeNewsAdapter().setNewData(newsListList.get(1).getNewsList());
-        flashFragment.getHomeNewsAdapter().setNewData(newsListList.get(2).getNewsList());
-        otherFragment.getHomeNewsAdapter().setNewData(newsListList.get(3).getNewsList());
+        if (newsListList == null) return;
+        setNewsListNewData(Constant.NEWS_TYPE_FLASH, 2, newsListList);
+        setNewsListNewData(Constant.NEWS_TYPE_FOCUS, 0, newsListList);
+        setNewsListNewData(Constant.NEWS_TYPE_COMPREHENSIVE, 1, newsListList);
+        setNewsListNewData(Constant.NEWS_TYPE_OTHER, 3, newsListList);
     }
+
+    @Override
+    public void moreNewsClassId(List<String> strings) {
+        if (strings == null) return;
+        setMoreNewsClassId(Constant.NEWS_TYPE_FLASH, 2, strings);
+        setMoreNewsClassId(Constant.NEWS_TYPE_FOCUS, 0, strings);
+        setMoreNewsClassId(Constant.NEWS_TYPE_COMPREHENSIVE, 1, strings);
+        setMoreNewsClassId(Constant.NEWS_TYPE_OTHER, 3, strings);
+    }
+
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -145,13 +156,21 @@ public class HomeFragment extends AppBaseFragment<MainContract.Presenter> implem
 
     @Override
     protected void initData() {
-        loadData();
+        onRefresh();
     }
 
     @Override
     public void onRefresh() {
         super.onRefresh();
         loadData();
+    }
+
+    private void setNewsListNewData(int pager, int dataPosition, List<NewsList> newsListList){
+        ((NewsFragment)viewPager.getAdapter().instantiateItem(viewPager, pager)).getHomeNewsAdapter().setNewData(newsListList.get(dataPosition).getNewsList());
+    }
+
+    private void setMoreNewsClassId(int pager, int dataPosition, List<String> strings){
+        ((NewsFragment)viewPager.getAdapter().instantiateItem(viewPager, pager)).setClassId(strings.get(dataPosition));
     }
 
     protected void loadData() {

@@ -8,6 +8,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="查看更多 >>"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"/>
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"/>
 </LinearLayout>

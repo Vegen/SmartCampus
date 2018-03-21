@@ -14,6 +14,10 @@ public interface BaseView {
 
     void showMessage(String message);
 
+    void loadMoreFail();
+
+    void loadMoreEnd(boolean end);
+
     Application application();
 
 }

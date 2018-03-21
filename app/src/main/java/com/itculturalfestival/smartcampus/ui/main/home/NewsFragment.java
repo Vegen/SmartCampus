@@ -1,7 +1,6 @@
-package com.itculturalfestival.smartcampus.ui.main.news;
+package com.itculturalfestival.smartcampus.ui.main.home;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,13 +10,16 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.itculturalfestival.smartcampus.AppBaseFragment;
+import com.itculturalfestival.smartcampus.Constant;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.adapter.HomeNewsAdapter;
 import com.itculturalfestival.smartcampus.utils.FullyGridLayoutManager;
-import com.itculturalfestival.smartcampus.utils.ItemDecoration.DividerGridItemDecoration;
 import com.itculturalfestival.smartcampus.utils.ItemDecoration.GridItemDecoration;
 import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
 import com.vegen.smartcampus.baseframework.utils.LogUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -32,9 +34,12 @@ public class NewsFragment extends AppBaseFragment {
     TextView tvFooter;
 
     private HomeNewsAdapter homeNewsAdapter;
+    private int newsType;
+    private String nextUrl = "";
 
-    public static NewsFragment getInstance() {
+    public static NewsFragment getInstance(int newsType) {
         Bundle args = new Bundle();
+        args.putInt("newsType", newsType);
         NewsFragment fragment = new NewsFragment();
         fragment.setArguments(args);
         return fragment;
@@ -52,6 +57,8 @@ public class NewsFragment extends AppBaseFragment {
 
     @Override
     protected void setupUI() {
+        Bundle bundle = getArguments();
+        newsType = bundle.getInt("newsType", Constant.NEWS_TYPE_FLASH);
         showContentView();
         homeNewsAdapter = new HomeNewsAdapter();
         homeNewsAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
@@ -71,11 +78,8 @@ public class NewsFragment extends AppBaseFragment {
         });
         tvFooter = footerView.findViewById(R.id.tv_footer);
         if (tvFooter != null){
-            tvFooter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LogUtils.e(tag, "tvFootertvFooter:");
-                }
+            tvFooter.setOnClickListener(v -> {
+                MoreNewsActivity.start(getContext(), newsType, nextUrl);
             });
         }
     }
@@ -87,5 +91,10 @@ public class NewsFragment extends AppBaseFragment {
 
     public HomeNewsAdapter getHomeNewsAdapter(){
         return homeNewsAdapter;
+    }
+
+    public void setClassId(String nextUrl){
+        if (nextUrl == null) return;
+        this.nextUrl = nextUrl;
     }
 }

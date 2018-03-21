@@ -49,6 +49,16 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
     }
 
     @Override
+    public void loadMoreFail() {
+
+    }
+
+    @Override
+    public void loadMoreEnd(boolean end) {
+
+    }
+
+    @Override
     public Application application() {
         return this.getApplication();
     }

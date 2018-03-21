@@ -53,6 +53,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!--首页-->
         <activity android:name=".ui.main.MainActivity"
             android:hardwareAccelerated="true"
             android:launchMode="singleTask"
@@ -66,6 +67,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!--更多新闻-->
+        <activity android:name=".ui.main.home.MoreNewsActivity"/>
+        <!--文章详情-->
+        <activity android:name=".ui.main.home.ArticleDetailActivity"/>
+
     </application>
 
 </manifest>

@@ -115,6 +115,16 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
+    public void loadMoreEnd(boolean end) {
+
+    }
+
+    @Override
+    public void loadMoreFail() {
+
+    }
+
+    @Override
     public Application application() {
         return getActivity().getApplication();
     }
