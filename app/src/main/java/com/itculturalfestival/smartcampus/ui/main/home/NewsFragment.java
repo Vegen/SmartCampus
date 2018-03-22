@@ -70,12 +70,6 @@ public class NewsFragment extends AppBaseFragment {
         homeNewsAdapter.setEmptyView(emptyView);
         View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.app_footer_home_news, (ViewGroup)root, false);
         homeNewsAdapter.setFooterView(footerView);
-        homeNewsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                LogUtils.e(tag, "position:" + position);
-            }
-        });
         tvFooter = footerView.findViewById(R.id.tv_footer);
         if (tvFooter != null){
             tvFooter.setOnClickListener(v -> {

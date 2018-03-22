@@ -1,22 +1,55 @@
 package com.itculturalfestival.smartcampus.ui.main.home;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.text.TextUtils;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itculturalfestival.smartcampus.AppBaseActivity;
 import com.itculturalfestival.smartcampus.R;
-import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
+import com.itculturalfestival.smartcampus.network.Url;
+import com.itculturalfestival.smartcampus.utils.ProgressHelper;
+import com.itculturalfestival.smartcampus.utils.ToastUtils;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.vegen.smartcampus.baseframework.utils.LogUtils;
+import com.vegen.smartcampus.baseframework.utils.SystemUtils;
+
+import butterknife.Bind;
 
 /**
  * Created by vegen on 2018/3/21.
  * 文章详情
  */
 
-public class ArticleDetailActivity extends AppBaseActivity {
+public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract.Presenter> implements ArticleDetailContract.View {
 
-    public static void start(Context context, String newsUrl){
+    @Bind(R.id.webView)
+    WebView webView;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
+    @Bind(R.id.tv_news_title)
+    TextView tvNewsTitle;
+
+    private String newsTitle;
+    private String newsUrl;
+
+    public static void start(Context context, String newsTitle, String newsUrl) {
         Intent intent = new Intent();
+        intent.putExtra("newsTitle", newsTitle);
         intent.putExtra("newsUrl", newsUrl);
         intent.setClass(context, ArticleDetailActivity.class);
         context.startActivity(intent);
@@ -29,8 +62,70 @@ public class ArticleDetailActivity extends AppBaseActivity {
     }
 
     @Override
-    protected BasePresenter presenter() {
-        return null;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                if (newsUrl != null && !TextUtils.isEmpty(newsUrl)) {
+
+                    if(Build.VERSION.SDK_INT>=23){
+                        String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+                        ActivityCompat.requestPermissions(this,mPermissionList,123);
+                    }
+
+                    ToastUtils.showShort(this, "点击分享");
+//                    new ShareBottomSheetDialog(this).share(article);
+                    new ShareAction(this).withText("hello")
+                            .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ,SHARE_MEDIA.WEIXIN)
+                            .setCallback(shareListener).open();
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private UMShareListener shareListener = new UMShareListener() {
+        /**
+         * @descrption 分享开始的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+
+        }
+
+        /**
+         * @descrption 分享成功的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Toast.makeText(ArticleDetailActivity.this,"成功了",Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @descrption 分享失败的回调
+         * @param platform 平台类型
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(ArticleDetailActivity.this,"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @descrption 分享取消的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(ArticleDetailActivity.this,"取消了",Toast.LENGTH_LONG).show();
+
+        }
+    };
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
     }
 
     @Override
@@ -40,11 +135,71 @@ public class ArticleDetailActivity extends AppBaseActivity {
 
     @Override
     protected void setupUI() {
+        newsTitle = getIntent().getStringExtra("newsTitle");
+        newsUrl = getIntent().getStringExtra("newsUrl");
+        setTitle(newsTitle);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        //设置自适应屏幕，两者合用
+        webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
 
+        webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
+        webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
+        webSettings.setSupportZoom(true);
+        webSettings.setTextSize(WebSettings.TextSize.LARGEST);
     }
 
     @Override
     protected void initData() {
+        // 假装在加载...
+        ProgressHelper.setProgress(progressBar, SystemUtils.getRandom(20, 40));
+        presenter().getNewsContent(Url.ROOT_URL + newsUrl);
+    }
 
+    @Override
+    protected ArticleDetailContract.Presenter presenter() {
+        if (mPresenter == null)
+            mPresenter = new ArticleDetailPresenter(this);
+        return mPresenter;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 解决webView带来的内存泄漏
+        if (webView != null) {
+            ((ViewGroup) webView.getParent()).removeView(webView);
+            webView.destroy();
+            webView = null;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void showNewsContent(String newsContent) {
+        LogUtils.e(tag, "显示内容：" + newsContent);
+        tvNewsTitle.setText(newsTitle);
+        webView.loadDataWithBaseURL(null, newsContent, "text/html", "utf-8", null);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(newsContent);
+                return true;
+            }
+        });
+        ProgressHelper.setProgress(progressBar, 100);
+        progressBar.postDelayed(() -> ProgressHelper.hide(progressBar), 600);
+    }
+
+    @Override
+    public void hideLoading() {
+        super.hideLoading();
+        ProgressHelper.hide(progressBar);
     }
 }

@@ -45,11 +45,11 @@ public class VerifyCodeManager {
         phone = phoneEdit.getText().toString().trim();
 
         if (TextUtils.isEmpty(phone)) {
-            T.showShort(mContext, R.string.tip_please_input_phone);
+            ToastUtils.showShort(mContext, R.string.tip_please_input_phone);
         } else if (phone.length() < 11) {
-            T.showShort(mContext, R.string.tip_phone_regex_not_right);
+            ToastUtils.showShort(mContext, R.string.tip_phone_regex_not_right);
         } else if (!RegexUtil.checkMobile(phone)) {
-            T.showShort(mContext, R.string.tip_phone_regex_not_right);
+            ToastUtils.showShort(mContext, R.string.tip_phone_regex_not_right);
         }else {
             // 两种方式：1.集成第三方SDK，调用skd的方法获取验证码
             // SMSSDK.getVerificationCode("86", phone);

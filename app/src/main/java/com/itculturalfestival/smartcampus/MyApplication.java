@@ -2,6 +2,7 @@ package com.itculturalfestival.smartcampus;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.umeng.commonsdk.UMConfigure;
 import com.vegen.smartcampus.baseframework.utils.LogUtils;
 
 import org.litepal.LitePal;
@@ -28,10 +29,28 @@ public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+//        UMShareAPI.get(this);
         instance = this;
         LitePal.initialize(this);
-        Bmob.initialize(this, BmobApplicationId);       // todo 修正渠道
+//        Bmob.initialize(this, BmobApplicationId);       // todo 修正渠道
         LogUtils.isDebug = BuildConfig.DEBUG;
+        /**
+         * 友盟
+         * 初始化common库
+         * 参数1:上下文，不能为空
+         * 参数2:设备类型，UMConfigure.DEVICE_TYPE_PHONE为手机、UMConfigure.DEVICE_TYPE_BOX为盒子，默认为手机
+         * 参数3:Push推送业务的secret
+         */
+        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, null);
+        /**
+         * 设置组件化的Log开关
+         * 参数: boolean 默认为false，如需查看LOG设置为true
+         */
+        UMConfigure.setLogEnabled(BuildConfig.DEBUG);
+//        Config.DEBUG = true;
+//        PlatformConfig.setWeixin("wx967daebe835fbeac","5bb696d9ccd75a38c8a0bfe0675559b3");
+//        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+//        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad","http://sns.whalecloud.com");
     }
 
 }

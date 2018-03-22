@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.TypedValue;
 
+import java.util.Random;
+
 /**
  * Created by vegen on 2018/3/20.
  */
@@ -28,5 +30,9 @@ public class SystemUtils {
             actionbarSizeTypedArray.recycle();
         }
         return actionBarHeight;
+    }
+
+    public static int getRandom(int min, int max) {
+        return new Random().nextInt(max)%(max-min+1) + min;
     }
 }
