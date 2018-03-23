@@ -21,16 +21,17 @@ public class ShareUtils {
      * 分享链接
      */
     public static void shareWeb(final Activity activity, String WebUrl, String title, String description, String imageUrl, int imageID, SHARE_MEDIA platform) {
-        UMWeb web = new UMWeb(WebUrl);//连接地址
-        web.setTitle(title);//标题
-        web.setDescription(description);//描述
+        UMWeb web = new UMWeb(WebUrl);                          //连接地址
+        web.setTitle(title);                                    //标题
+        web.setDescription(description);                        //描述
         if (TextUtils.isEmpty(imageUrl)) {
-            web.setThumb(new UMImage(activity, imageID));  //本地缩略图
+            web.setThumb(new UMImage(activity, imageID));       //本地缩略图
         } else {
-            web.setThumb(new UMImage(activity, imageUrl));  //网络缩略图
+            web.setThumb(new UMImage(activity, imageUrl));      //网络缩略图
         }
         new ShareAction(activity)
-                .setPlatform(platform)
+                .setDisplayList(SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN_FAVORITE, SHARE_MEDIA.SINA)
+                .withText(title)
                 .withMedia(web)
                 .setCallback(new UMShareListener() {
                     @Override
@@ -61,7 +62,6 @@ public class ShareUtils {
                             @Override
                             public void run() {
                                 Toast.makeText(activity, share_media + " 分享失败", Toast.LENGTH_SHORT).show();
-
                             }
                         });
                     }
@@ -76,13 +76,6 @@ public class ShareUtils {
                         });
                     }
                 })
-                .share();
-
-        //新浪微博中图文+链接
-        /*new ShareAction(activity)
-                .setPlatform(platform)
-                .withText(description + " " + WebUrl)
-                .withMedia(new UMImage(activity,imageID))
-                .share();*/
+                .open();
     }
 }

@@ -3,6 +3,10 @@ package com.itculturalfestival.smartcampus;
 import android.support.multidex.MultiDexApplication;
 
 import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.Config;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.common.SocializeConstants;
 import com.vegen.smartcampus.baseframework.utils.LogUtils;
 
 import org.litepal.LitePal;
@@ -29,8 +33,8 @@ public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-//        UMShareAPI.get(this);
         instance = this;
+        UMShareAPI.get(this);
         LitePal.initialize(this);
 //        Bmob.initialize(this, BmobApplicationId);       // todo 修正渠道
         LogUtils.isDebug = BuildConfig.DEBUG;
@@ -46,11 +50,11 @@ public class MyApplication extends MultiDexApplication {
          * 设置组件化的Log开关
          * 参数: boolean 默认为false，如需查看LOG设置为true
          */
-        UMConfigure.setLogEnabled(BuildConfig.DEBUG);
-//        Config.DEBUG = true;
-//        PlatformConfig.setWeixin("wx967daebe835fbeac","5bb696d9ccd75a38c8a0bfe0675559b3");
-//        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
-//        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad","http://sns.whalecloud.com");
+        UMConfigure.setLogEnabled(true);
+        Config.DEBUG = true;
+        PlatformConfig.setWeixin("replace_yours","replace_yours");
+        PlatformConfig.setQQZone("replace_yours", "replace_yours");
+        PlatformConfig.setSinaWeibo("replace_yours", "replace_yours","http://sns.whalecloud.com");
     }
 
 }

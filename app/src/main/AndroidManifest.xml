@@ -78,12 +78,22 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!--<activity android:name=".TempActivity">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
         <!--更多新闻-->
         <activity android:name=".ui.main.home.MoreNewsActivity"/>
         <!--文章详情-->
         <activity android:name=".ui.main.home.ArticleDetailActivity"/>
 
         <!--友盟配置-->
+        <!--weibo-->
         <activity
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -104,8 +114,9 @@
 
         </activity>
 
+        <!--qq-->
         <activity
-            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
             android:noHistory="true" >
 
@@ -113,12 +124,13 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent100424468" />
+                <data android:scheme="tencent1106797634" />
             </intent-filter>
+
         </activity>
 
         <activity
-            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:name="com.tencent.connect.common.AssistActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
@@ -128,6 +140,7 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:excludeFromRecents="true"
             />
+
 
     </application>
 

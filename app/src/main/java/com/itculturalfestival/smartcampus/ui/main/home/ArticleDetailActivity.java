@@ -20,6 +20,7 @@ import com.itculturalfestival.smartcampus.AppBaseActivity;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.network.Url;
 import com.itculturalfestival.smartcampus.utils.ProgressHelper;
+import com.itculturalfestival.smartcampus.utils.ShareUtils;
 import com.itculturalfestival.smartcampus.utils.ToastUtils;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
@@ -68,60 +69,27 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
                 if (newsUrl != null && !TextUtils.isEmpty(newsUrl)) {
 
                     if(Build.VERSION.SDK_INT>=23){
-                        String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS};
+                        String[] mPermissionList = new String[]{
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.CALL_PHONE,
+                                Manifest.permission.READ_LOGS,
+                                Manifest.permission.READ_PHONE_STATE,
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.SET_DEBUG_APP,
+                                Manifest.permission.SYSTEM_ALERT_WINDOW,
+                                Manifest.permission.GET_ACCOUNTS,
+                                Manifest.permission.WRITE_APN_SETTINGS
+                        };
                         ActivityCompat.requestPermissions(this,mPermissionList,123);
                     }
 
-                    ToastUtils.showShort(this, "点击分享");
-//                    new ShareBottomSheetDialog(this).share(article);
-                    new ShareAction(this).withText("hello")
-                            .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ,SHARE_MEDIA.WEIXIN)
-                            .setCallback(shareListener).open();
+                    ShareUtils.shareWeb(this, Url.ROOT_URL + newsUrl, newsTitle, newsTitle + "...", "", R.mipmap.ic_logo, null);
                 }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
-    private UMShareListener shareListener = new UMShareListener() {
-        /**
-         * @descrption 分享开始的回调
-         * @param platform 平台类型
-         */
-        @Override
-        public void onStart(SHARE_MEDIA platform) {
-
-        }
-
-        /**
-         * @descrption 分享成功的回调
-         * @param platform 平台类型
-         */
-        @Override
-        public void onResult(SHARE_MEDIA platform) {
-            Toast.makeText(ArticleDetailActivity.this,"成功了",Toast.LENGTH_LONG).show();
-        }
-
-        /**
-         * @descrption 分享失败的回调
-         * @param platform 平台类型
-         * @param t 错误原因
-         */
-        @Override
-        public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(ArticleDetailActivity.this,"失败"+t.getMessage(),Toast.LENGTH_LONG).show();
-        }
-
-        /**
-         * @descrption 分享取消的回调
-         * @param platform 平台类型
-         */
-        @Override
-        public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(ArticleDetailActivity.this,"取消了",Toast.LENGTH_LONG).show();
-
-        }
-    };
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
