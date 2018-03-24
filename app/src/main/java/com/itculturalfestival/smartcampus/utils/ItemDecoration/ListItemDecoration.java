@@ -11,6 +11,18 @@ import android.view.View;
 
 public class ListItemDecoration extends RecyclerView.ItemDecoration{
 
+    private int top = 20;
+    private int right = 16;
+    private int left = 16;
+
+    public ListItemDecoration(){}
+
+    public ListItemDecoration(int top, int right, int left){
+        this.top = top;
+        this.right = right;
+        this.left = left;
+    }
+
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
@@ -24,8 +36,8 @@ public class ListItemDecoration extends RecyclerView.ItemDecoration{
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         /*item距离上20px,距离左右各16px*/
-        outRect.top = 20;
-        outRect.right = 16;
-        outRect.left = 16;
+        outRect.top = top;
+        outRect.right = right;
+        outRect.left = left;
     }
 }

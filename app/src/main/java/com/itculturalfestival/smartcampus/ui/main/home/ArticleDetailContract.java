@@ -9,11 +9,11 @@ import com.vegen.smartcampus.baseframework.mvp.view.BaseView;
 
 public class ArticleDetailContract {
 
-    interface View extends BaseView {
+    public interface View extends BaseView {
         void showNewsContent(String newsContent);
     }
 
-    interface Presenter extends BasePresenter {
+    public interface Presenter extends BasePresenter {
         void getNewsContent(String url);
     }
 

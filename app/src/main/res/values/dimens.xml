@@ -20,4 +20,5 @@
     <dimen name="long_edit_150">150dp</dimen>
     <dimen name="edit_padding_top">5dp</dimen>
     <dimen name="main_image_size">20dp</dimen>
+    <dimen name="home_fun_img_size">40dp</dimen>
 </resources>

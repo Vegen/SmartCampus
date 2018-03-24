@@ -8,12 +8,16 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
+//        maven {url "http://mvn.mob.com/android"}
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
 //        classpath 'com.android.tools.build:gradle:1.2.3'    // Bmob 后端云
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+//        classpath ('com.mob.sdk:MobSDK:+'){
+//
+//        }
     }
 }
 

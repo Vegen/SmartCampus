@@ -6,4 +6,6 @@ package com.itculturalfestival.smartcampus.network;
 
 public class Url {
     public static final String ROOT_URL = "http://news.lingnan.edu.cn";
+    public static final String ZSB_URL = "http://zsb.lingnan.edu.cn";
+
 }

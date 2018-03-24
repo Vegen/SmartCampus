@@ -34,95 +34,71 @@
      <init>(...);
 }
 
-# 友盟
--keep class com.umeng.commonsdk.** {*;}
--dontshrink
--dontoptimize
--dontwarn com.google.android.maps.**
--dontwarn android.webkit.WebView
--dontwarn com.umeng.**
--dontwarn com.tencent.weibo.sdk.**
--dontwarn com.facebook.**
--keep public class javax.**
--keep public class android.webkit.**
--dontwarn android.support.v4.**
--keep enum com.facebook.**
--keepattributes Exceptions,InnerClasses,Signature
--keepattributes *Annotation*
--keepattributes SourceFile,LineNumberTable
+# bmob
+-ignorewarnings
 
--keep public interface com.facebook.**
--keep public interface com.tencent.**
--keep public interface com.umeng.socialize.**
--keep public interface com.umeng.socialize.sensor.**
--keep public interface com.umeng.scrshot.**
+-keepattributes Signature,*Annotation*
 
--keep public class com.umeng.socialize.* {*;}
+# keep BmobSDK
+-dontwarn cn.bmob.v3.**
+-keep class cn.bmob.v3.** {*;}
 
+# 确保JavaBean不被混淆-否则gson将无法将数据解析成具体对象
+-keep class * extends cn.bmob.v3.BmobObject {
+    *;
+}
+-keep class com.example.bmobexample.bean.BankCard{*;}
+-keep class com.example.bmobexample.bean.GameScore{*;}
+-keep class com.example.bmobexample.bean.MyUser{*;}
+-keep class com.example.bmobexample.bean.Person{*;}
+-keep class com.example.bmobexample.file.Movie{*;}
+-keep class com.example.bmobexample.file.Song{*;}
+-keep class com.example.bmobexample.relation.Post{*;}
+-keep class com.example.bmobexample.relation.Comment{*;}
 
--keep class com.facebook.**
--keep class com.facebook.** { *; }
--keep class com.umeng.scrshot.**
--keep public class com.tencent.** {*;}
--keep class com.umeng.socialize.sensor.**
--keep class com.umeng.socialize.handler.**
--keep class com.umeng.socialize.handler.*
--keep class com.umeng.weixin.handler.**
--keep class com.umeng.weixin.handler.*
--keep class com.umeng.qq.handler.**
--keep class com.umeng.qq.handler.*
--keep class UMMoreHandler{*;}
--keep class com.tencent.mm.sdk.modelmsg.WXMediaMessage {*;}
--keep class com.tencent.mm.sdk.modelmsg.** implements com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject {*;}
--keep class im.yixin.sdk.api.YXMessage {*;}
--keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
--keep class com.tencent.mm.sdk.** {
-   *;
-}
--keep class com.tencent.mm.opensdk.** {
-   *;
-}
--keep class com.tencent.wxop.** {
-   *;
-}
--keep class com.tencent.mm.sdk.** {
-   *;
-}
--dontwarn twitter4j.**
--keep class twitter4j.** { *; }
+# keep BmobPush
+-dontwarn  cn.bmob.push.**
+-keep class cn.bmob.push.** {*;}
 
--keep class com.tencent.** {*;}
--dontwarn com.tencent.**
--keep class com.kakao.** {*;}
--dontwarn com.kakao.**
--keep public class com.umeng.com.umeng.soexample.R$*{
-    public static final int *;
+# keep okhttp3、okio
+-dontwarn okhttp3.**
+-keep class okhttp3.** { *;}
+-keep interface okhttp3.** { *; }
+-dontwarn okio.**
+
+# keep rx
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+ long producerIndex;
+ long consumerIndex;
 }
--keep public class com.linkedin.android.mobilesdk.R$*{
-    public static final int *;
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+ rx.internal.util.atomic.LinkedQueueNode producerNode;
 }
--keepclassmembers enum * {
-    public static **[] values();
-    public static ** valueOf(java.lang.String);
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+ rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
 
--keep class com.tencent.open.TDialog$*
--keep class com.tencent.open.TDialog$* {*;}
--keep class com.tencent.open.PKDialog
--keep class com.tencent.open.PKDialog {*;}
--keep class com.tencent.open.PKDialog$*
--keep class com.tencent.open.PKDialog$* {*;}
--keep class com.umeng.socialize.impl.ImageImpl {*;}
--keep class com.sina.** {*;}
+# 如果你需要兼容6.0系统，请不要混淆org.apache.http.legacy.jar
+-dontwarn android.net.compatibility.**
+-dontwarn android.net.http.**
+-dontwarn com.android.internal.http.multipart.**
+-dontwarn org.apache.commons.**
+-dontwarn org.apache.http.**
+-keep class android.net.compatibility.**{*;}
+-keep class android.net.http.**{*;}
+-keep class com.android.internal.http.multipart.**{*;}
+-keep class org.apache.commons.**{*;}
+-keep class org.apache.http.**{*;}
+
+# shareSdk
+-keep class cn.sharesdk.**{*;}
+-keep class com.sina.**{*;}
+-keep class **.R$* {*;}
+-keep class **.R{*;}
+-keep class com.mob.**{*;}
+-keep class m.framework.**{*;}
+-dontwarn cn.sharesdk.**
 -dontwarn com.sina.**
--keep class  com.alipay.share.sdk.** {
-   *;
-}
-
--keepnames class * implements android.os.Parcelable {
-    public static final ** CREATOR;
-}
-
--keep class com.linkedin.** { *; }
--keep class com.android.dingtalk.share.ddsharemodule.** { *; }
--keepattributes Signature
+-dontwarn com.mob.**
+-dontwarn **.R$*

@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import cn.bmob.v3.Bmob;
+
+import static com.itculturalfestival.smartcampus.Constant.BmobApplicationId;
 
 /**
  * Created by vegen on 2018/3/1.

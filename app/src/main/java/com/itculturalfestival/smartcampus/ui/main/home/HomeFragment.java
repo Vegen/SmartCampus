@@ -7,7 +7,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.itculturalfestival.smartcampus.AppBaseFragment;
@@ -15,6 +18,7 @@ import com.itculturalfestival.smartcampus.Constant;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.adapter.BaseFragmentPagerAdapter;
 import com.itculturalfestival.smartcampus.entity.NewsList;
+import com.itculturalfestival.smartcampus.ui.main.home.recruit.RecruitMessageActivity;
 import com.itculturalfestival.smartcampus.utils.GlideImageLoader;
 import com.vegen.smartcampus.baseframework.utils.SystemUtils;
 import com.youth.banner.Banner;
@@ -23,6 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.itculturalfestival.smartcampus.network.Url.ROOT_URL;
 
@@ -49,6 +55,13 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
     Toolbar toolbar;
     @Bind(R.id.view_top)
     View viewTop;
+    @Bind(R.id.rl_recruit)
+    LinearLayout rlRecruit;
+    @Bind(R.id.rl_employment)
+    LinearLayout rlEmployment;
+    @Bind(R.id.rl_lost_and_found)
+    LinearLayout rlLostAndFound;
+
     private BaseFragmentPagerAdapter fragmentPagerAdapter;
     private NewsFragment flashFragment;
     private NewsFragment focusFragment;
@@ -140,16 +153,15 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
         setMoreNewsClassId(Constant.NEWS_TYPE_OTHER, 3, strings);
     }
 
-
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         int absVerticalOffset = Math.abs(verticalOffset);
         float alpha = (float) absVerticalOffset / banner.getHeight();
         if (alpha > 1) alpha = 1;
         toolbar.setAlpha(alpha);
-        if (alpha == 0){
+        if (alpha == 0) {
             swipeRefreshLayout.setEnabled(true);
-        }else {
+        } else {
             swipeRefreshLayout.setEnabled(false);
         }
     }
@@ -165,16 +177,32 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
         loadData();
     }
 
-    private void setNewsListNewData(int pager, int dataPosition, List<NewsList> newsListList){
-        ((NewsFragment)viewPager.getAdapter().instantiateItem(viewPager, pager)).getHomeNewsAdapter().setNewData(newsListList.get(dataPosition).getNewsList());
+    @OnClick({R.id.rl_recruit, R.id.rl_employment, R.id.rl_lost_and_found})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.rl_recruit:
+                // 招生
+                RecruitMessageActivity.start(getContext());
+                break;
+            case R.id.rl_employment:
+                // 就业
+                break;
+            case R.id.rl_lost_and_found:
+                // 失物招领
+                break;
+        }
     }
 
-    private void setMoreNewsClassId(int pager, int dataPosition, List<String> strings){
-        ((NewsFragment)viewPager.getAdapter().instantiateItem(viewPager, pager)).setClassId(strings.get(dataPosition));
+
+    private void setNewsListNewData(int pager, int dataPosition, List<NewsList> newsListList) {
+        ((NewsFragment) viewPager.getAdapter().instantiateItem(viewPager, pager)).getHomeNewsAdapter().setNewData(newsListList.get(dataPosition).getNewsList());
     }
 
-    protected void loadData() {
+    private void setMoreNewsClassId(int pager, int dataPosition, List<String> strings) {
+        ((NewsFragment) viewPager.getAdapter().instantiateItem(viewPager, pager)).setClassId(strings.get(dataPosition));
+    }
+
+    private void loadData() {
         presenter().getNewsList(NEWS_DATA_URL);
     }
-
 }

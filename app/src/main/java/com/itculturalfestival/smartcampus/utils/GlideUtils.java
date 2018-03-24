@@ -14,4 +14,8 @@ public class GlideUtils {
     public static void load(Context context, String url, ImageView imageView){
         Glide.with(context).load(Url.ROOT_URL + url).crossFade().into(imageView);
     }
+
+    public static void load(Context context, int imgRes, ImageView imageView){
+        Glide.with(context).load(imgRes).crossFade().into(imageView);
+    }
 }

@@ -38,12 +38,93 @@
 
                 </RelativeLayout>
 
-                <View
+                <LinearLayout
                     android:id="@+id/view_top"
-                    tools:visibility="visible"
-                    android:background="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize" />
+                    android:background="@color/white"
+                    android:layout_height="?actionBarSize"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/rl_recruit"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="@dimen/home_fun_img_size"
+                            android:layout_height="@dimen/home_fun_img_size"
+                            android:src="@mipmap/app_ic_recruit"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="招生信息"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/common_text_size_14"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/line"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/rl_employment"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="@dimen/home_fun_img_size"
+                            android:layout_height="@dimen/home_fun_img_size"
+                            android:src="@mipmap/app_ic_employment"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="就业信息"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/common_text_size_14"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/line"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/rl_lost_and_found"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="@dimen/home_fun_img_size"
+                            android:layout_height="@dimen/home_fun_img_size"
+                            android:src="@mipmap/app_ic_lost_and_found"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="失物招领"
+                            android:textColor="@color/text_color"
+                            android:textSize="@dimen/common_text_size_14"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--<View-->
+                    <!--android:id="@+id/view_top"-->
+                    <!--tools:visibility="visible"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="?actionBarSize" />-->
 
                 <View
                     android:layout_width="match_parent"

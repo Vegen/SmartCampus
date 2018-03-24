@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -58,6 +59,32 @@ android {
     }
 }
 
+//MobSDK {
+//    appKey "24d565cb25d9e"
+//    appSecret "d851d3804e812e5c46766b6e8c01a0d9"
+//
+//    ShareSDK {
+//        //平台配置信息
+//        devInfo {
+//            SinaWeibo {
+//                appKey "568898243"
+//                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+//                callbackUri "http://www.sharesdk.cn"
+//                shareByAppClient false
+//            }
+//            Wechat {
+//                appId "wx4868b35061f87885"
+//                appSecret "64020361b8ec4c99936c0e3999a9f249"
+//            }
+//            QQ {
+//                appId "100371282"
+//                appKey "aed9b0303e3ed1e27bae87c33761161d"
+//            }
+//        }
+//    }
+//
+//}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -85,11 +112,7 @@ dependencies {
     // 卡片布局
     compile 'com.android.support:cardview-v7:25.3.1'
     // 友盟
-    compile 'com.umeng.sdk:common:latest.integration'
-    compile 'com.umeng.sdk:analytics:latest.integration'
-//    ('com.umeng.sdk:common:latest.integration'){
-//        exclude group : 'com.squareup.okio'
-//    }
+//    compile 'com.umeng.sdk:common:latest.integration'
 //    compile 'com.umeng.sdk:analytics:latest.integration'
 
     compile project(':baseframework')
