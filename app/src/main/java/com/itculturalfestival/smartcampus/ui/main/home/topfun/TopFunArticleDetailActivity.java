@@ -21,6 +21,7 @@ import com.itculturalfestival.smartcampus.Constant;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.ui.main.home.ArticleDetailContract;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
 import com.vegen.smartcampus.baseframework.utils.LogUtils;
 
 import butterknife.Bind;
@@ -29,7 +30,7 @@ import butterknife.Bind;
  * Created by vegen on 2018/3/24.
  */
 
-public class TopFunArticleDetailActivity extends AppBaseActivity<ArticleDetailContract.Presenter> implements ArticleDetailContract.View {
+public class TopFunArticleDetailActivity extends AppBaseActivity {
 
     @Bind(R.id.tv_news_title)
     TextView tvNewsTitle;
@@ -84,28 +85,29 @@ public class TopFunArticleDetailActivity extends AppBaseActivity<ArticleDetailCo
 
     @Override
     protected void initData() {
-        if (true/*type == Constant.MESSAGE_RECRUIT*/){
-            webView.loadUrl(url);
-            webView.setWebViewClient(new WebViewClient() {
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    view.loadUrl(url);
-                    return true;
+        webView.loadUrl(url);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+        webView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100 && refreshLayout != null){
+                    refreshLayout.finishRefreshing();
+                    refreshLayout.setEnableRefresh(false);
                 }
-            });
-            webView.setWebChromeClient(new WebChromeClient(){
-                @Override
-                public void onProgressChanged(WebView view, int newProgress) {
-                    super.onProgressChanged(view, newProgress);
-                    if (newProgress == 100 && refreshLayout != null){
-                        refreshLayout.finishRefreshing();
-                        refreshLayout.setEnableRefresh(false);
-                    }
-                }
-            });
-        }else {
-            presenter().getNewsContent(url);      // todo: 只加载电脑端
-        }
+            }
+        });
+    }
+
+    @Override
+    protected BasePresenter presenter() {
+        return null;
     }
 
     @Override
@@ -163,20 +165,6 @@ public class TopFunArticleDetailActivity extends AppBaseActivity<ArticleDetailCo
     }
 
     @Override
-    public void showNewsContent(String newsContent) {
-        LogUtils.e(tag, "显示内容：" + newsContent);
-        webView.loadDataWithBaseURL(null, newsContent, "text/html", "utf-8", null);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadDataWithBaseURL(null, newsContent, "text/html", "utf-8", null);
-                return true;
-            }
-        });
-
-    }
-
-    @Override
     public void hideLoading(boolean isFail) {
         super.hideLoading(isFail);
         if (isFail) {
@@ -197,11 +185,5 @@ public class TopFunArticleDetailActivity extends AppBaseActivity<ArticleDetailCo
                 }
             });
         }
-    }
-    @Override
-    protected ArticleDetailContract.Presenter presenter() {
-//        if (mPresenter == null)
-//            mPresenter = new EmploymentArticleDetailPresenter(this);
-        return null;
     }
 }

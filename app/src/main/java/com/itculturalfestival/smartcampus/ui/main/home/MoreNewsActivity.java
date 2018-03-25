@@ -98,7 +98,7 @@ public class MoreNewsActivity extends AppBaseActivity<MoreNewsContract.Presenter
             @Override
             public void onRefresh(TwinklingRefreshLayout refreshLayout) {
                 super.onRefresh(refreshLayout);
-                initData();
+                loadData();
             }
         });
         moreNewsAdapter = new MoreNewsAdapter();
@@ -120,6 +120,10 @@ public class MoreNewsActivity extends AppBaseActivity<MoreNewsContract.Presenter
 
     @Override
     protected void initData() {
+
+    }
+
+    private void loadData(){
         page = 1;
         presenter().getNewsList(MORE_NEWS_URL, newsType);
     }

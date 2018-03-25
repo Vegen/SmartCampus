@@ -68,7 +68,7 @@ public class EmploymentListActivity extends AppBaseActivity<EmploymentListContra
             @Override
             public void onRefresh(TwinklingRefreshLayout refreshLayout) {
                 super.onRefresh(refreshLayout);
-                initData();
+                loadData();
             }
         });
         employmentListAdapter = new EmploymentListAdapter();
@@ -80,14 +80,20 @@ public class EmploymentListActivity extends AppBaseActivity<EmploymentListContra
         recyclerView.addItemDecoration(new ListItemDecoration());
         View emptyView = View.inflate(this, R.layout.app_view_empty, null);
         employmentListAdapter.setEmptyView(emptyView);
-        if (type != Constant.FAIR)
+        if (type != Constant.FAIR) {
             employmentListAdapter.setOnLoadMoreListener(() -> presenter().getEmploymentList(url + page, type), recyclerView);
-
+        }else {
+            employmentListAdapter.setEnableLoadMore(false);
+        }
         refreshLayout.startRefresh();
     }
 
     @Override
     protected void initData() {
+
+    }
+
+    private void loadData(){
         page = 1;
         presenter().getEmploymentList(url + page, type);
     }
