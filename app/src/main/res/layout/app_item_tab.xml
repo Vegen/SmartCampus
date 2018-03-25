@@ -15,7 +15,7 @@
         android:layout_height="24dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="6dp"
-        android:src="@drawable/app_selector_bottom_news" />
+        android:src="@drawable/app_selector_bottom_home" />
 
     <TextView
         android:id="@+id/title"

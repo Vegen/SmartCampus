@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top"
+    android:layout_width="42dp"
+    android:layout_height="42dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_gravity="bottom|right"
+    android:layout_marginBottom="54dp"
+    android:layout_marginRight="16dp"
+    android:alpha="0"
+    android:clickable="true"
+    android:src="@mipmap/app_ic_return_top"
+    tools:alpha="1" />

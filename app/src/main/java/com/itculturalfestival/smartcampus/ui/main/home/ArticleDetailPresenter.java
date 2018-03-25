@@ -55,12 +55,12 @@ public class ArticleDetailPresenter extends BasePresenterImpl<ArticleDetailContr
                                 .replace("href=\"\"", "")
                                 .replace("【点击：", "【点击：" + SystemUtils.getRandom(5, 30))
                                 .replace("发布时间", "</br>发布时间"));
-                        mView.hideLoading();
+                        mView.hideLoading(false);
                     }
                 }, throwable -> {
                     if (mView != null) {
                         mView.showMessage(HttpError.getErrorMessage(throwable));
-                        mView.hideLoading();
+                        mView.hideLoading(true);
                     }
                 });
 

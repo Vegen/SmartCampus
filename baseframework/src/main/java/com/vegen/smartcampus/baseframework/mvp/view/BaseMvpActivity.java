@@ -39,7 +39,7 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isFail) {
         dismissProgressDialog();
     }
 

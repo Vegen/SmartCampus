@@ -65,12 +65,12 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
                     if (mView != null) {
                         mView.showNewsList(newsListList);
                         mView.moreNewsClassId(strings);
-                        mView.hideLoading();
+                        mView.hideLoading(false);
                     }
                 }, throwable -> {
                     if (mView != null) {
                         mView.showMessage(HttpError.getErrorMessage(throwable));
-                        mView.hideLoading();
+                        mView.hideLoading(true);
                     }
                 });
 

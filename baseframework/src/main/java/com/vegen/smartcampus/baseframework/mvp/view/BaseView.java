@@ -10,7 +10,7 @@ public interface BaseView {
 
     void showLoading(String msg);
 
-    void hideLoading();
+    void hideLoading(boolean isFail);
 
     void showMessage(String message);
 

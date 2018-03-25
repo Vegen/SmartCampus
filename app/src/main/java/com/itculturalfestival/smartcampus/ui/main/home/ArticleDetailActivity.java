@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -29,6 +30,7 @@ import com.itculturalfestival.smartcampus.utils.ToastUtils;
 //import com.tencent.tauth.IUiListener;
 //import com.tencent.tauth.Tencent;
 //import com.tencent.tauth.UiError;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.vegen.smartcampus.baseframework.utils.LogUtils;
 import com.vegen.smartcampus.baseframework.utils.SystemUtils;
 
@@ -43,8 +45,8 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
 
     @Bind(R.id.webView)
     WebView webView;
-    @Bind(R.id.progressBar)
-    ProgressBar progressBar;
+    @Bind(R.id.refreshLayout)
+    TwinklingRefreshLayout refreshLayout;
     @Bind(R.id.tv_news_title)
     TextView tvNewsTitle;
 
@@ -125,6 +127,8 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
         webSettings.setSupportZoom(true);
         webSettings.setTextSize(WebSettings.TextSize.LARGEST);
+        refreshLayout.setEnableLoadmore(false);
+        refreshLayout.startRefresh();
     }
 
 //    BaseUiListener baseUiListener;
@@ -149,8 +153,6 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
 
     @Override
     protected void initData() {
-        // 假装在加载...
-        ProgressHelper.setProgress(progressBar, SystemUtils.getRandom(20, 40));
         presenter().getNewsContent(Url.ROOT_URL + newsUrl);
     }
 
@@ -173,6 +175,15 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
     }
 
     @Override
+    public void onBackPressed() {
+        if (webView!= null && webView.canGoBack()){
+            webView.goBack();
+        }else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 //        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
@@ -187,17 +198,32 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(newsContent);
+                view.loadDataWithBaseURL(null, newsContent, "text/html", "utf-8", null);
                 return true;
             }
         });
-        ProgressHelper.setProgress(progressBar, 100);
-        progressBar.postDelayed(() -> ProgressHelper.hide(progressBar), 600);
     }
 
     @Override
-    public void hideLoading() {
-        super.hideLoading();
-        ProgressHelper.hide(progressBar);
+    public void hideLoading(boolean isFail) {
+        super.hideLoading(isFail);
+        if (isFail) {
+            if (refreshLayout == null) return;
+            refreshLayout.postDelayed(() -> {
+                refreshLayout.finishRefreshing();
+                refreshLayout.setEnableRefresh(false);
+            }, 600);
+        }else {
+            webView.setWebChromeClient(new WebChromeClient(){
+                @Override
+                public void onProgressChanged(WebView view, int newProgress) {
+                    super.onProgressChanged(view, newProgress);
+                    if (newProgress == 100 && refreshLayout != null){
+                        refreshLayout.finishRefreshing();
+                        refreshLayout.setEnableRefresh(false);
+                    }
+                }
+            });
+        }
     }
 }

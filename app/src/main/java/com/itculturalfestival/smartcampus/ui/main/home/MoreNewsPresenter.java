@@ -64,12 +64,12 @@ public class MoreNewsPresenter extends BasePresenterImpl<MoreNewsContract.View> 
                     if (mView != null) {
                         mView.nextNewsListForm(newsForm);
                         mView.showNewsList(newsList);
-                        mView.hideLoading();
+                        mView.hideLoading(false);
                     }
                 }, throwable -> {
                     if (mView != null) {
                         mView.showMessage(HttpError.getErrorMessage(throwable));
-                        mView.hideLoading();
+                        mView.hideLoading(true);
                     }
                 });
 
@@ -130,12 +130,12 @@ public class MoreNewsPresenter extends BasePresenterImpl<MoreNewsContract.View> 
                     if (mView != null) {
                         mView.nextNewsListForm(newsForm);
                         mView.showNewsList(newsList);
-                        mView.hideLoading();
+                        mView.hideLoading(false);
                     }
                 }, throwable -> {
                     if (mView != null) {
                         mView.showMessage(HttpError.getErrorMessage(throwable));
-                        mView.hideLoading();
+                        mView.hideLoading(true);
                         mView.loadMoreFail();
                     }
                 });

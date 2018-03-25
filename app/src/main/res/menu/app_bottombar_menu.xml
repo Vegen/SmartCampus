@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/bottomNews"
-        android:icon="@drawable/app_selector_bottom_news"
+        android:icon="@drawable/app_selector_bottom_home"
         android:title="首页"/>
 
     <item

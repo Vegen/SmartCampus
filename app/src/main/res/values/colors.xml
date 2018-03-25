@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#12b7f5</color>
-    <color name="colorPrimaryDark">#12b7f5</color>
-    <color name="colorAccent">#12b7f5</color>
-    <color name="colorTheme">#12b7f5</color>
+    <color name="colorPrimary">#129af5</color>
+    <color name="colorPrimaryDark">#129af5</color>
+    <color name="colorAccent">#129af5</color>
+    <color name="colorTheme">#129af5</color>
     <color name="white">#ffffff</color>
 
     <color name="bg_color">#F3F3F3</color>
@@ -12,7 +12,7 @@
     <color name="line">#ededed</color>
     <color name="white_half">#7fffffff</color>
     <color name="black">#333333</color>
-    <color name="theme_half">#7f12b7f5</color>
+    <color name="theme_half">#7f129af5</color>
     <color name="text_color">#595959</color>
     <color name="text_color_light">#bababa</color>
     <color name="background_gray">#f2f5f7</color>

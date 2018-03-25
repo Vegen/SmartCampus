@@ -105,7 +105,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isFail) {
 
     }
 

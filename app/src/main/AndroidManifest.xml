@@ -93,10 +93,12 @@
         <activity android:name=".ui.main.home.MoreNewsActivity"/>
         <!--文章详情-->
         <activity android:name=".ui.main.home.ArticleDetailActivity"/>
-        <!--招生信息-->
-        <activity android:name=".ui.main.home.recruit.RecruitMessageActivity"/>
-        <!--招生网的文章详情-->
-        <activity android:name=".ui.main.home.recruit.RecruitArticleDetailActivity"/>
+        <!--招生就业信息-->
+        <activity android:name=".ui.main.home.topfun.RecruitAndEmploymentMessageActivity"/>
+        <!--招生就业文章详情-->
+        <activity android:name=".ui.main.home.topfun.TopFunArticleDetailActivity"/>
+        <!--就业列表-->
+        <activity android:name=".ui.main.home.topfun.EmploymentListActivity"/>
 
         <!--友盟配置-->
         <!--weibo-->

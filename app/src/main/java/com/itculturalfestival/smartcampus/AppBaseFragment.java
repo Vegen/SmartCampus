@@ -126,7 +126,6 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
             showLoadingView();
             lazyLoad();
         });
-
         showLoadingView();
         ButterKnife.bind(this, root);
         return root;
@@ -149,35 +148,45 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
         }
 
         contentView.setVisibility(View.VISIBLE);
-        loadingView.setVisibility(View.VISIBLE);
         emptyView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
+        if (isAnimatorDismissLoading()){
+            loadingView.setVisibility(View.VISIBLE);
+            PropertyValuesHolder p1 = PropertyValuesHolder.ofFloat("alpha", 1f, 0f);
 
-        PropertyValuesHolder p1 = PropertyValuesHolder.ofFloat("alpha", 1f, 0f);
+            ObjectAnimator objectAnimator = ObjectAnimator
+                    .ofPropertyValuesHolder(loadingView, p1)
+                    .setDuration(500);
+            objectAnimator.addListener(
+                    new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart(Animator animation) {}
 
-        ObjectAnimator objectAnimator = ObjectAnimator
-                .ofPropertyValuesHolder(loadingView, p1)
-                .setDuration(500);
-        objectAnimator.addListener(
-                new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {}
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            loadingView.setVisibility(View.GONE);
+                        }
 
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        loadingView.setVisibility(View.GONE);
-                    }
+                        @Override
+                        public void onAnimationCancel(Animator animation) {}
 
-                    @Override
-                    public void onAnimationCancel(Animator animation) {}
+                        @Override
+                        public void onAnimationRepeat(Animator animation) {}
+                    });
+            objectAnimator.start();
 
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {}
-                });
-        objectAnimator.start();
+            ObjectAnimator.ofFloat(contentView, "alpha", 0f, 1f).start();
+        }else {
+            loadingView.setVisibility(View.GONE);
+        }
+    }
 
-        ObjectAnimator.ofFloat(contentView, "alpha", 0f, 1f).start();
-
+    /**
+     * 是否动画结束loading
+     * @return
+     */
+    protected boolean isAnimatorDismissLoading(){
+        return true;
     }
 
     protected void showEmptyView() {
@@ -225,8 +234,8 @@ public abstract class AppBaseFragment<T extends BasePresenter> extends BaseMvpFr
     }
 
     @Override
-    public void hideLoading() {
-        super.hideLoading();
+    public void hideLoading(boolean isFail) {
+        super.hideLoading(isFail);
         setSwipeRefreshLayoutRefreshing(false);
     }
 

@@ -1,4 +1,4 @@
-package com.itculturalfestival.smartcampus.ui.main.home.recruit;
+package com.itculturalfestival.smartcampus.ui.main.home.topfun;
 
 import android.Manifest;
 import android.content.Context;
@@ -14,13 +14,14 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.itculturalfestival.smartcampus.AppBaseActivity;
+import com.itculturalfestival.smartcampus.Constant;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.ui.main.home.ArticleDetailContract;
-import com.itculturalfestival.smartcampus.utils.ProgressHelper;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.vegen.smartcampus.baseframework.utils.LogUtils;
 
 import butterknife.Bind;
 
@@ -28,21 +29,23 @@ import butterknife.Bind;
  * Created by vegen on 2018/3/24.
  */
 
-public class RecruitArticleDetailActivity extends AppBaseActivity<ArticleDetailContract.Presenter> implements ArticleDetailContract.View {
+public class TopFunArticleDetailActivity extends AppBaseActivity<ArticleDetailContract.Presenter> implements ArticleDetailContract.View {
 
     @Bind(R.id.tv_news_title)
     TextView tvNewsTitle;
     @Bind(R.id.webView)
     WebView webView;
-    @Bind(R.id.progressBar)
-    ProgressBar progressBar;
+    @Bind(R.id.refreshLayout)
+    TwinklingRefreshLayout refreshLayout;
     private String title;
     private String url;
+    private int type;
 
-    public static void start(Context context, String title, String url) {
-        Intent intent = new Intent(context, RecruitArticleDetailActivity.class);
+    public static void start(Context context, String title, String url, int type) {
+        Intent intent = new Intent(context, TopFunArticleDetailActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("url", url);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
@@ -55,45 +58,54 @@ public class RecruitArticleDetailActivity extends AppBaseActivity<ArticleDetailC
     protected void setupUI() {
         title = getIntent().getStringExtra("title");
         url = getIntent().getStringExtra("url");
+        type = getIntent().getIntExtra("type", Constant.MESSAGE_RECRUIT);
         setTitle(title);
+
+        refreshLayout.setEnableLoadmore(false);
+        refreshLayout.startRefresh();
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         //设置自适应屏幕，两者合用
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-
+//        // 强制只加载网页端
+//        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+//        webSettings.setUserAgentString("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36");
+//        webSettings.setBuiltInZoomControls(true);
+        webSettings.setSupportZoom(true);
+        //支持获取手势焦点
+        webView.requestFocusFromTouch();
         webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
-        webSettings.setSupportZoom(true);
+        webSettings.setDomStorageEnabled(true);
         tvNewsTitle.setVisibility(View.GONE);
     }
 
     @Override
     protected void initData() {
-        // 假装在加载...
-//        ProgressHelper.setProgress(progressBar, SystemUtils.getRandom(20, 40));
-//        presenter().getNewsContent(url);      // todo: 只加载电脑端
-        webView.loadUrl(url);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
-        webView.setWebChromeClient(new WebChromeClient(){
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-                if (newProgress != 100) {
-                    ProgressHelper.setProgress(progressBar, newProgress);
-                }else {
-                    ProgressHelper.setProgress(progressBar, 100);
-                    progressBar.postDelayed(() -> ProgressHelper.hide(progressBar), 600);
+        if (true/*type == Constant.MESSAGE_RECRUIT*/){
+            webView.loadUrl(url);
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    view.loadUrl(url);
+                    return true;
                 }
-            }
-        });
+            });
+            webView.setWebChromeClient(new WebChromeClient(){
+                @Override
+                public void onProgressChanged(WebView view, int newProgress) {
+                    super.onProgressChanged(view, newProgress);
+                    if (newProgress == 100 && refreshLayout != null){
+                        refreshLayout.finishRefreshing();
+                        refreshLayout.setEnableRefresh(false);
+                    }
+                }
+            });
+        }else {
+            presenter().getNewsContent(url);      // todo: 只加载电脑端
+        }
     }
 
     @Override
@@ -104,6 +116,15 @@ public class RecruitArticleDetailActivity extends AppBaseActivity<ArticleDetailC
             ((ViewGroup) webView.getParent()).removeView(webView);
             webView.destroy();
             webView = null;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView!= null && webView.canGoBack()){
+            webView.goBack();
+        }else {
+            super.onBackPressed();
         }
     }
 
@@ -143,28 +164,44 @@ public class RecruitArticleDetailActivity extends AppBaseActivity<ArticleDetailC
 
     @Override
     public void showNewsContent(String newsContent) {
-//        LogUtils.e(tag, "显示内容：" + newsContent);
-//        webView.loadDataWithBaseURL(null, newsContent, "text/html", "utf-8", null);
-//        webView.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                view.loadUrl(newsContent);
-//                return true;
-//            }
-//        });
-//        ProgressHelper.setProgress(progressBar, 100);
-//        progressBar.postDelayed(() -> ProgressHelper.hide(progressBar), 600);
+        LogUtils.e(tag, "显示内容：" + newsContent);
+        webView.loadDataWithBaseURL(null, newsContent, "text/html", "utf-8", null);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadDataWithBaseURL(null, newsContent, "text/html", "utf-8", null);
+                return true;
+            }
+        });
+
     }
 
     @Override
-    public void hideLoading() {
-        super.hideLoading();
-        ProgressHelper.hide(progressBar);
+    public void hideLoading(boolean isFail) {
+        super.hideLoading(isFail);
+        if (isFail) {
+            if (refreshLayout == null) return;
+            refreshLayout.postDelayed(() -> {
+                refreshLayout.finishRefreshing();
+                refreshLayout.setEnableRefresh(false);
+            }, 600);
+        }else {
+            webView.setWebChromeClient(new WebChromeClient(){
+                @Override
+                public void onProgressChanged(WebView view, int newProgress) {
+                    super.onProgressChanged(view, newProgress);
+                    if (newProgress == 100 && refreshLayout != null){
+                        refreshLayout.finishRefreshing();
+                        refreshLayout.setEnableRefresh(false);
+                    }
+                }
+            });
+        }
     }
     @Override
     protected ArticleDetailContract.Presenter presenter() {
-        if (mPresenter == null)
-            mPresenter = new RecruitArticleDetailPresenter(this);
-        return mPresenter;
+//        if (mPresenter == null)
+//            mPresenter = new EmploymentArticleDetailPresenter(this);
+        return null;
     }
 }

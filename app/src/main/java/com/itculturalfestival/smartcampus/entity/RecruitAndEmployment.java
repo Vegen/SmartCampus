@@ -4,12 +4,12 @@ package com.itculturalfestival.smartcampus.entity;
  * Created by vegen on 2018/3/24.
  */
 
-public class Recruit {
+public class RecruitAndEmployment {
     private int imgRes;
     private String title;
     private String url;
 
-    public Recruit(int imgRes, String title, String url){
+    public RecruitAndEmployment(int imgRes, String title, String url){
         this.imgRes = imgRes;
         this.title = title;
         this.url = url;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.itculturalfestival.smartcampus.AppBaseActivity;
@@ -13,6 +14,7 @@ import com.itculturalfestival.smartcampus.adapter.MoreNewsAdapter;
 import com.itculturalfestival.smartcampus.entity.News;
 import com.itculturalfestival.smartcampus.network.Url;
 import com.itculturalfestival.smartcampus.utils.ItemDecoration.ListItemDecoration;
+import com.itculturalfestival.smartcampus.utils.QuickReturnTopManager;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
@@ -104,11 +106,16 @@ public class MoreNewsActivity extends AppBaseActivity<MoreNewsContract.Presenter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(moreNewsAdapter);
+        new QuickReturnTopManager(recyclerView);
         recyclerView.addItemDecoration(new ListItemDecoration());
+        View emptyView = View.inflate(this, R.layout.app_view_empty, null);
+        moreNewsAdapter.setEmptyView(emptyView);
         newsList = new ArrayList<>();
         moreNewsAdapter.setNewData(newsList);
         moreNewsAdapter.setOnLoadMoreListener(() ->
                 presenter().getNewsList(page, MORE_NEWS_URL, newsType, __VIEWSTATE, __VIEWSTATEGENERATOR, __EVENTVALIDATION), recyclerView);
+
+        refreshLayout.startRefresh();
     }
 
     @Override
@@ -118,8 +125,8 @@ public class MoreNewsActivity extends AppBaseActivity<MoreNewsContract.Presenter
     }
 
     @Override
-    public void hideLoading() {
-        super.hideLoading();
+    public void hideLoading(boolean isFail) {
+        super.hideLoading(isFail);
         if (refreshLayout != null){
             refreshLayout.finishRefreshing();
         }
@@ -131,13 +138,15 @@ public class MoreNewsActivity extends AppBaseActivity<MoreNewsContract.Presenter
     @Override
     public void loadMoreFail() {
         super.loadMoreFail();
-        moreNewsAdapter.loadMoreFail();
+        if (moreNewsAdapter != null)
+            moreNewsAdapter.loadMoreFail();
     }
 
     @Override
     public void loadMoreEnd(boolean end) {
         super.loadMoreEnd(end);
-        moreNewsAdapter.loadMoreEnd();
+        if (moreNewsAdapter != null)
+            moreNewsAdapter.loadMoreEnd();
     }
 
     private String setTitleText(int newType){

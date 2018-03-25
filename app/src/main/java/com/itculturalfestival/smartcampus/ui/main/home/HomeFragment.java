@@ -7,9 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.gyf.barlibrary.ImmersionBar;
@@ -18,7 +16,7 @@ import com.itculturalfestival.smartcampus.Constant;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.adapter.BaseFragmentPagerAdapter;
 import com.itculturalfestival.smartcampus.entity.NewsList;
-import com.itculturalfestival.smartcampus.ui.main.home.recruit.RecruitMessageActivity;
+import com.itculturalfestival.smartcampus.ui.main.home.topfun.RecruitAndEmploymentMessageActivity;
 import com.itculturalfestival.smartcampus.utils.GlideImageLoader;
 import com.vegen.smartcampus.baseframework.utils.SystemUtils;
 import com.youth.banner.Banner;
@@ -27,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.itculturalfestival.smartcampus.network.Url.ROOT_URL;
@@ -96,6 +93,11 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
     public void onPause() {
         super.onPause();
         appBarLayout.removeOnOffsetChangedListener(this);
+    }
+
+    @Override
+    protected boolean isAnimatorDismissLoading() {
+        return false;
     }
 
     @Override
@@ -182,10 +184,11 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
         switch (view.getId()) {
             case R.id.rl_recruit:
                 // 招生
-                RecruitMessageActivity.start(getContext());
+                RecruitAndEmploymentMessageActivity.start(getContext(), Constant.MESSAGE_RECRUIT);
                 break;
             case R.id.rl_employment:
                 // 就业
+                RecruitAndEmploymentMessageActivity.start(getContext(), Constant.MESSAGE_EMPLOYMENT);
                 break;
             case R.id.rl_lost_and_found:
                 // 失物招领
