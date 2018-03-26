@@ -37,7 +37,7 @@ public class EmploymentListAdapter extends BaseQuickAdapter<Employment, BaseView
         helper.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TopFunArticleDetailActivity.start(mContext, item.getTitle(), Url.JYSD_URL + item.getNextUrl(), Constant.MESSAGE_EMPLOYMENT);
+                TopFunArticleDetailActivity.start(mContext, item.getTitle(), Url.JYSD_URL + item.getNextUrl());
             }
         });
     }

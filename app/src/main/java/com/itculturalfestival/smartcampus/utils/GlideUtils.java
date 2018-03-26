@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.network.Url;
 
 /**
@@ -11,11 +12,15 @@ import com.itculturalfestival.smartcampus.network.Url;
  */
 
 public class GlideUtils {
+    public static void load(Context context, boolean addRoot, String url, ImageView imageView){
+        Glide.with(context).load((addRoot ? Url.ROOT_URL : "") + url).placeholder(R.drawable.anim_loading_view).error(R.drawable.app_empty_content).crossFade().into(imageView);
+    }
+
     public static void load(Context context, String url, ImageView imageView){
-        Glide.with(context).load(Url.ROOT_URL + url).crossFade().into(imageView);
+        Glide.with(context).load((false ? Url.ROOT_URL : "") + url).placeholder(R.drawable.anim_loading_view).error(R.drawable.app_empty_content).crossFade().into(imageView);
     }
 
     public static void load(Context context, int imgRes, ImageView imageView){
-        Glide.with(context).load(imgRes).crossFade().into(imageView);
+        Glide.with(context).load(imgRes).crossFade().placeholder(R.drawable.anim_loading_view).error(R.drawable.app_empty_content).into(imageView);
     }
 }

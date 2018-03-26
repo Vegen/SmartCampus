@@ -16,16 +16,29 @@ import com.itculturalfestival.smartcampus.Constant;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.adapter.BaseFragmentPagerAdapter;
 import com.itculturalfestival.smartcampus.entity.NewsList;
+import com.itculturalfestival.smartcampus.ui.main.home.topfun.LostAndFoundActivity;
 import com.itculturalfestival.smartcampus.ui.main.home.topfun.RecruitAndEmploymentMessageActivity;
+import com.itculturalfestival.smartcampus.ui.main.home.topfun.TopFunArticleDetailActivity;
 import com.itculturalfestival.smartcampus.utils.GlideImageLoader;
+import com.vegen.smartcampus.baseframework.utils.LogUtils;
 import com.vegen.smartcampus.baseframework.utils.SystemUtils;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.listener.OnBannerListener;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListener;
+import io.reactivex.disposables.Disposable;
+import rx.Subscription;
 
 import static com.itculturalfestival.smartcampus.network.Url.ROOT_URL;
 
@@ -64,6 +77,10 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
     private NewsFragment focusFragment;
     private NewsFragment comprehensiveFragment;
     private NewsFragment otherFragment;
+
+    private List<String> imgs = new ArrayList<>();
+    private List<String> titles = new ArrayList<>();
+    private List<com.itculturalfestival.smartcampus.entity.db.Banner> bannerList = new ArrayList<>();
 
     public static HomeFragment getInstance() {
         Bundle args = new Bundle();
@@ -106,16 +123,13 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
         ImmersionBar.setTitleBar(getActivity(), toolbar);
         float marginHeight = SystemUtils.getStatusBarHeight(getContext()) + SystemUtils.getActionBarHeight(getContext());
         viewTop.getLayoutParams().height = (int) marginHeight;
-
-        List<String> imgs = new ArrayList<>();
-        imgs.add("http://bpic.588ku.com/back_pic/00/13/15/08564453d0190aa.jpg!/fh/300/quality/90/unsharp/true/compress/true");
-        imgs.add("http://bpic.588ku.com/back_pic/03/65/44/8057ae8dfe9b121.jpg!/fh/300/quality/90/unsharp/true/compress/true");
-        imgs.add("http://bpic.588ku.com/back_pic/00/08/53/17562a43dac4e41.jpg!/fh/300/quality/90/unsharp/true/compress/true");
-        banner.setImages(imgs);
+        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
+        banner.setIndicatorGravity(BannerConfig.CENTER);
         banner.setImageLoader(new GlideImageLoader());
-        banner.start();
-        banner.startAutoPlay();
-
+        banner.setOnBannerListener(position -> {
+            if (bannerList.isEmpty()) return;
+            TopFunArticleDetailActivity.start(getContext(), bannerList.get(position).getTitle(), bannerList.get(position).getNextUrl());
+        });
         List<Fragment> fragments = new ArrayList<>();
         flashFragment = NewsFragment.getInstance(Constant.NEWS_TYPE_FLASH);
         focusFragment = NewsFragment.getInstance(Constant.NEWS_TYPE_FOCUS);
@@ -134,7 +148,31 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
         viewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setOffscreenPageLimit(fragments.size());
-        swipeRefreshLayout.setProgressViewOffset(false, 180, 380);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();//开始轮播
+        if (banner != null) banner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //结束轮播
+        if (banner != null) banner.stopAutoPlay();
+    }
+
+    @Override
+    protected void onInvisible() {
+        super.onInvisible();
+        if (banner != null) banner.stopAutoPlay();
+    }
+
+    @Override
+    protected void onVisible() {
+        super.onVisible();
+        if (banner != null) banner.startAutoPlay();
     }
 
     @Override
@@ -153,6 +191,34 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
         setMoreNewsClassId(Constant.NEWS_TYPE_FOCUS, 0, strings);
         setMoreNewsClassId(Constant.NEWS_TYPE_COMPREHENSIVE, 1, strings);
         setMoreNewsClassId(Constant.NEWS_TYPE_OTHER, 3, strings);
+    }
+
+    @Override
+    public void showBanner(List<com.itculturalfestival.smartcampus.entity.db.Banner> bannerList) {
+        imgs.clear();
+        titles.clear();
+        this.bannerList.clear();
+        if (bannerList != null) {
+            this.bannerList.addAll(bannerList);
+            for (com.itculturalfestival.smartcampus.entity.db.Banner banner : bannerList) {
+                imgs.add(banner.getImgUrl());
+                titles.add(banner.getTitle());
+            }
+        }
+        banner.setImages(imgs);
+        banner.setBannerTitles(titles);
+        banner.start();
+    }
+
+    private int loadFinish;
+
+    @Override
+    public void hideLoading(boolean isFail) {
+//        super.hideLoading(isFail);
+        if (loadFinish == 2) {
+            setSwipeRefreshLayoutRefreshing(false);
+        }
+        loadFinish ++;
     }
 
     @Override
@@ -192,6 +258,7 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
                 break;
             case R.id.rl_lost_and_found:
                 // 失物招领
+                LostAndFoundActivity.start(getContext());
                 break;
         }
     }
@@ -206,6 +273,8 @@ public class HomeFragment extends AppBaseFragment<HomeContract.Presenter> implem
     }
 
     private void loadData() {
+        loadFinish = 1;
+        presenter().getBanner();
         presenter().getNewsList(NEWS_DATA_URL);
     }
 }

@@ -23,7 +23,7 @@ public class HomeNewsAdapter extends BaseQuickAdapter<News, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, News item) {
         // 新闻图片
-        GlideUtils.load(mContext, item.getNews_pic(), (ImageView) helper.getView(R.id.iv_news_img));
+        GlideUtils.load(mContext, true, item.getNews_pic(), (ImageView) helper.getView(R.id.iv_news_img));
         // 新闻时间
         helper.setText(R.id.tv_news_time, item.getNews_date());
         // 新闻标题

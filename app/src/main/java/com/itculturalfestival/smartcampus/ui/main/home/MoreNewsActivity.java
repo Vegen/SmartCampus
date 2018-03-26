@@ -115,12 +115,11 @@ public class MoreNewsActivity extends AppBaseActivity<MoreNewsContract.Presenter
         moreNewsAdapter.setOnLoadMoreListener(() ->
                 presenter().getNewsList(page, MORE_NEWS_URL, newsType, __VIEWSTATE, __VIEWSTATEGENERATOR, __EVENTVALIDATION), recyclerView);
 
-        refreshLayout.startRefresh();
     }
 
     @Override
     protected void initData() {
-
+        refreshLayout.startRefresh();
     }
 
     private void loadData(){

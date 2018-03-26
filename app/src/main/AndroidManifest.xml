@@ -95,10 +95,12 @@
         <activity android:name=".ui.main.home.ArticleDetailActivity"/>
         <!--招生就业信息-->
         <activity android:name=".ui.main.home.topfun.RecruitAndEmploymentMessageActivity"/>
-        <!--招生就业文章详情-->
+        <!--招生就业banner文章详情-->
         <activity android:name=".ui.main.home.topfun.TopFunArticleDetailActivity"/>
         <!--就业列表-->
         <activity android:name=".ui.main.home.topfun.EmploymentListActivity"/>
+        <!--失物招领-->
+        <activity android:name=".ui.main.home.topfun.LostAndFoundActivity"/>
 
         <!--友盟配置-->
         <!--weibo-->

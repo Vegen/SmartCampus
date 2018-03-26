@@ -21,4 +21,7 @@ public class Constant {
     public static final int JOB = 3;                        // 岗位信息
     public static final int IN_SCHOOL = 4;                  // 校内招聘
     public static final int OUT_SCHOOL = 5;                 // 校外招聘
+
+    public static final int LOST = 0;                       // 丢失
+    public static final int FOUND = 1;                      // 拾获
 }

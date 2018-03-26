@@ -27,4 +27,5 @@
     <color name="tans">#00000000</color>
     <color name="colorBarText">#F0F5E5</color>
     <color name="date_text_color">#999999</color>
+    <color name="warn">#ed9f00</color>
 </resources>

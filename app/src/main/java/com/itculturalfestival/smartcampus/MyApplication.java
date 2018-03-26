@@ -52,7 +52,8 @@ public class MyApplication extends MultiDexApplication {
 //         * 参数: boolean 默认为false，如需查看LOG设置为true
 //         */
 //        UMConfigure.setLogEnabled(true);
-//        Config.DEBUG = true;
+
+//        Config.DEBUG = true;umeng_social_net.jar
 //        PlatformConfig.setWeixin("wx967daebe835fbeac","5bb696d9ccd75a38c8a0bfe0675559b3");
 //        PlatformConfig.setQQZone("1106797634", "i60Y8lkTlTvotzYh");
 //        PlatformConfig.setSinaWeibo("204838108", "12a4d1e6fbae4bf6667d67d8a7d30f5f","http://sns.whalecloud.com");

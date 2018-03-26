@@ -80,17 +80,13 @@ public class EmploymentListActivity extends AppBaseActivity<EmploymentListContra
         recyclerView.addItemDecoration(new ListItemDecoration());
         View emptyView = View.inflate(this, R.layout.app_view_empty, null);
         employmentListAdapter.setEmptyView(emptyView);
-        if (type != Constant.FAIR) {
-            employmentListAdapter.setOnLoadMoreListener(() -> presenter().getEmploymentList(url + page, type), recyclerView);
-        }else {
-            employmentListAdapter.setEnableLoadMore(false);
-        }
-        refreshLayout.startRefresh();
+        employmentListAdapter.setOnLoadMoreListener(() -> presenter().getEmploymentList(url + page, type), recyclerView);
+
     }
 
     @Override
     protected void initData() {
-
+        refreshLayout.startRefresh();
     }
 
     private void loadData(){

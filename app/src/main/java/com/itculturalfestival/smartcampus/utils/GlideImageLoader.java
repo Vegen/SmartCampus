@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.itculturalfestival.smartcampus.R;
 import com.youth.banner.loader.ImageLoader;
 
 /**
@@ -19,6 +20,8 @@ public class GlideImageLoader extends ImageLoader {
         Glide.with(context.getApplicationContext())
                 .load(path)
                 .crossFade()
+                .placeholder(R.drawable.app_empty_content)
+                .error(R.drawable.app_empty_content)
                 .into(imageView);
     }
 }

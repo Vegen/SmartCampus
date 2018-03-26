@@ -19,6 +19,7 @@ import retrofit2.HttpException;
 public class HttpError {
 
     public static String getErrorMessage(Throwable throwable) {
+        LogUtils.e(throwable.getMessage());
         if (BuildConfig.DEBUG) {
             return throwable.getMessage();
         }

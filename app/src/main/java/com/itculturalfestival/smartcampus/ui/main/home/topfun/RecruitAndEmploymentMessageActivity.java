@@ -81,8 +81,7 @@ public class RecruitAndEmploymentMessageActivity extends AppBaseActivity {
                     // 打开网页端
                     TopFunArticleDetailActivity.start(RecruitAndEmploymentMessageActivity.this,
                             recruitAndEmploymentList.get(position).getTitle(),
-                            recruitAndEmploymentList.get(position).getUrl(),
-                            type
+                            recruitAndEmploymentList.get(position).getUrl()
                     );
                 }else {
                     // 跳转到招聘列表

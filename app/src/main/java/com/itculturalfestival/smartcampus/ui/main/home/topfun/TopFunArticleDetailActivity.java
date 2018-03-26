@@ -40,13 +40,13 @@ public class TopFunArticleDetailActivity extends AppBaseActivity {
     TwinklingRefreshLayout refreshLayout;
     private String title;
     private String url;
-    private int type;
+//    private int type;
 
-    public static void start(Context context, String title, String url, int type) {
+    public static void start(Context context, String title, String url) {
         Intent intent = new Intent(context, TopFunArticleDetailActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("url", url);
-        intent.putExtra("type", type);
+//        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
@@ -59,7 +59,7 @@ public class TopFunArticleDetailActivity extends AppBaseActivity {
     protected void setupUI() {
         title = getIntent().getStringExtra("title");
         url = getIntent().getStringExtra("url");
-        type = getIntent().getIntExtra("type", Constant.MESSAGE_RECRUIT);
+//        type = getIntent().getIntExtra("type", Constant.MESSAGE_RECRUIT);
         setTitle(title);
 
         refreshLayout.setEnableLoadmore(false);
@@ -98,8 +98,16 @@ public class TopFunArticleDetailActivity extends AppBaseActivity {
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
                 if (newProgress == 100 && refreshLayout != null){
-                    refreshLayout.finishRefreshing();
-                    refreshLayout.setEnableRefresh(false);
+                    refreshLayout.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            refreshLayout.finishRefreshing();
+                            refreshLayout.setEnableRefresh(false);
+                            refreshLayout.setEnabled(false);
+                            refreshLayout.setHeaderHeight(0);
+                        }
+                    }, 600);
+
                 }
             }
         });

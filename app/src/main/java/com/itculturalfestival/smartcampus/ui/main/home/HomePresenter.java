@@ -2,6 +2,8 @@ package com.itculturalfestival.smartcampus.ui.main.home;
 
 import com.itculturalfestival.smartcampus.entity.News;
 import com.itculturalfestival.smartcampus.entity.NewsList;
+import com.itculturalfestival.smartcampus.entity.db.Banner;
+import com.itculturalfestival.smartcampus.network.SubscriptionHolder;
 import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenterImpl;
 import com.vegen.smartcampus.baseframework.network.DisposableHolder;
 import com.vegen.smartcampus.baseframework.network.HttpError;
@@ -15,11 +17,15 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import rx.Subscription;
 
 import static com.itculturalfestival.smartcampus.Constant.*;
 
@@ -76,6 +82,33 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
 
         mHttpLinkers.add(new DisposableHolder(disposable));
     }
+
+    @Override
+    public void getBanner() {
+
+        BmobQuery<Banner> query = new BmobQuery<Banner>();
+        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_THEN_NETWORK);   // 先从缓存获取数据，如果没有，再从网络获取。
+        // 按照时间降序
+        query.order("-createdAt");
+        Subscription subscription = query.findObjects(new FindListener<Banner>() {
+            @Override
+            public void done(List<Banner> list, BmobException e) {
+                if (mView != null) {
+                    if (e == null) {
+                        // 请求成功
+                        mView.showBanner(list);
+                        mView.hideLoading(false);
+                    } else {
+
+                        mView.showMessage(HttpError.getErrorMessage(e));
+                        mView.hideLoading(true);
+                    }
+                }
+            }
+        });
+        mHttpLinkers.add(new SubscriptionHolder(subscription));
+    }
+
 
     private List<News> getTagNews(Element photoList, String tag, int type){
         List<News> newsList = new ArrayList<>();
