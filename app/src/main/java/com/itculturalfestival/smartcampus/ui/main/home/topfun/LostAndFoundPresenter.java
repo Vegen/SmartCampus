@@ -25,7 +25,7 @@ public class LostAndFoundPresenter extends BasePresenterImpl<LostAndFoundContrac
     @Override
     public void getLostList(int SKIP, int skip) {
         BmobQuery<Lost> query = new BmobQuery<Lost>();
-        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_THEN_NETWORK);   // 先从缓存获取数据，如果没有，再从网络获取。
+//        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_THEN_NETWORK);   // 先从缓存获取数据，如果没有，再从网络获取。
         query.order("-createdAt");      // 按照时间降序
         query.setLimit(SKIP);           // 每次加载条数
         query.setSkip(skip);            // 偏移量
