@@ -42,7 +42,7 @@ public class LostAndFoundAdapter extends BaseQuickAdapter<Lost, LostAndFoundAdap
 
         // TODO 根据用户 id 检测是否是用户自己发的，是则显示已解决按钮
         if (item.getSmartUser() != null && item.getSmartUser().getObjectId().equals("")){
-            helper.tvSolve.setVisibility(View.VISIBLE);
+            helper.tvSolve.setText("点击已解决");
             helper.tvSolve.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -51,7 +51,13 @@ public class LostAndFoundAdapter extends BaseQuickAdapter<Lost, LostAndFoundAdap
                 }
             });
         }else {
-            helper.tvSolve.setVisibility(View.GONE);
+            helper.tvSolve.setText("联系TA");
+            helper.tvSolve.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 点击打开聊天界面
+                }
+            });
         }
 
         helper.tvTitle.setText(item.getTitle());

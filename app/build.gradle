@@ -116,4 +116,5 @@ dependencies {
 //    compile 'com.umeng.sdk:analytics:latest.integration'
 
     compile project(':baseframework')
+    compile project(':easeui')
 }

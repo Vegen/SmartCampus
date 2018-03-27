@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_gravity="end|bottom"
+                    android:layout_gravity="end|top"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="@color/white"
@@ -44,11 +44,11 @@
 
                 <TextView
                     android:id="@+id/tv_type_lost"
-                    android:background="@color/warn"
+                    android:background="#eddb25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_gravity="left|bottom"
+                    android:layout_gravity="left|top"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="@color/white"
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|bottom"
                     android:text="点击已解决√"
-                    android:background="#f4de0b"
+                    android:background="@color/warn"
                     android:padding="8dp"
                     android:textColor="@color/white"/>
 
