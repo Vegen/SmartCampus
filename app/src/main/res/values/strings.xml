@@ -40,7 +40,7 @@
     <string name="tip_please_input_phone">请输入手机号码</string>
     <string name="tip_phone_can_not_be_empty">手机号码不能为空</string>
     <string name="tip_please_input_code">请输入验证码</string>
-    <string name="tip_please_input_6_32_password">请输入6-32个密码</string>
+    <string name="tip_please_input_6_32_password">请输入6-32位密码</string>
     <string name="reset_pwd">重置密码</string>
 
     <!--环信-->

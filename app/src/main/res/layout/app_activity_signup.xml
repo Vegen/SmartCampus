@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+    <RelativeLayout
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f8f8f8"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/ic_logo"
+            />
+
+        <RelativeLayout
+            android:id="@+id/layout_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:background="@android:color/white"
+            android:layout_below="@+id/iv_logo" >
+
+            <com.itculturalfestival.smartcampus.ui.custom.CleanEditText
+                android:id="@+id/et_phone"
+                style="@style/login_edit_style"
+                android:hint="手机号"
+                android:inputType="phone"
+                android:layout_toLeftOf="@+id/btn_send_verify_code"
+                android:maxLength="11" >
+
+                <requestFocus />
+            </com.itculturalfestival.smartcampus.ui.custom.CleanEditText>
+
+            <Button
+                android:id="@+id/btn_send_verify_code"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:background="#f3f4f8"
+                android:text="@string/send_verification_code"
+                android:textColor="#B1B1B3"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <com.itculturalfestival.smartcampus.ui.custom.CleanEditText
+            android:id="@+id/et_password"
+            style="@style/login_edit_style"
+            android:layout_below="@+id/et_verifiCode"
+            android:layout_marginTop="0.5dp"
+            android:ems="10"
+            android:hint="密码"
+            android:inputType="textPassword" />
+
+        <com.itculturalfestival.smartcampus.ui.custom.CleanEditText
+            android:id="@+id/et_verifiCode"
+            style="@style/login_edit_style"
+            android:layout_below="@+id/layout_phone"
+            android:layout_marginTop="0.5dp"
+            android:ems="10"
+            android:hint="验证码"
+            android:inputType="number" />
+
+        <com.itculturalfestival.smartcampus.ui.custom.CleanEditText
+            android:id="@+id/et_nickname"
+            style="@style/login_edit_style"
+            android:layout_below="@+id/et_password"
+            android:layout_marginTop="10dp"
+            android:maxLength="32"
+            android:singleLine="true"
+            android:hint="昵称"
+            android:inputType="text" />
+        <LinearLayout
+            android:id="@+id/ll_school"
+            android:layout_below="@+id/et_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:gravity="center_vertical"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:paddingLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:text="学校"/>
+            <TextView
+                android:id="@+id/tv_school"
+                android:gravity="center_vertical"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:paddingLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="5dp"
+                />
+            <ImageView
+                android:paddingRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_go"/>
+        </LinearLayout>
+        <View
+            android:layout_below="@+id/ll_school"
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line"/>
+
+        <Button
+            android:id="@+id/btn_create_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_login_selector"
+            android:onClick="onClick"
+            android:text="@string/create_account"
+            android:textColor="#5c5c5c"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/btn_create_account"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击“创建账号”即同意" />
+
+            <TextView
+                android:id="@+id/tv_user_rule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:text="@string/user_rule"
+                android:textColor="#5c5c5c"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

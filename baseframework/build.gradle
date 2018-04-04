@@ -33,10 +33,10 @@ dependencies {
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["support-v4"]
     compile rootProject.ext.dependencies["support:design"]
-    compile rootProject.ext.dependencies["retrofit2:converter-gson"]
-    compile (rootProject.ext.dependencies["retrofit2:adapter"]){
-        exclude group : 'com.squareup.okhttp3'  // 排除和 Bmob 重复包问题
-    }
+//    compile rootProject.ext.dependencies["retrofit2:converter-gson"]
+//    compile (rootProject.ext.dependencies["retrofit2:adapter"]){
+//        exclude group : 'com.squareup.okhttp3'  // 排除和 Bmob 重复包问题
+//    }
     compile rootProject.ext.dependencies["rxjava2:rxandroid"]
     compile rootProject.ext.dependencies["rxjava2:rxjava"]
 

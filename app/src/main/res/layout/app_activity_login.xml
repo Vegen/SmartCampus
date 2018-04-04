@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f8f8" >
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="84dp"
+        android:src="@mipmap/ic_logo"
+        />
+
+    <LinearLayout
+        android:id="@+id/input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_logo"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical" >
+
+        <com.itculturalfestival.smartcampus.ui.custom.CleanEditText
+            android:id="@+id/et_email_phone"
+            style="@style/login_edit_style"
+            android:hint="@string/phone"
+            android:inputType="textEmailAddress"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#f8f8f8" />
+
+        <com.itculturalfestival.smartcampus.ui.custom.CleanEditText
+            android:id="@+id/et_password"
+            style="@style/login_edit_style"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_login_selector"
+        android:text="@string/login"
+        android:textColor="#5c5c5c"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/third_login_explain_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/btn_login"
+        android:layout_marginTop="45dp" >
+
+        <TextView
+            android:id="@+id/tv_third_login_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/use_third_account"
+            android:textColor="#5c5c5c"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/tv_third_login_explain"
+            android:background="#969696" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="60dp"
+            android:layout_toRightOf="@id/tv_third_login_explain"
+            android:background="#969696" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/third_login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/third_login_explain_layout"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/iv_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:src="@drawable/btn_login_wechat_selector" />
+
+        <ImageView
+            android:id="@+id/iv_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/btn_login_qq_selector" />
+
+        <ImageView
+            android:id="@+id/iv_sina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:src="@drawable/btn_login_sina_selector" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/tv_create_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:clickable="true"
+            android:text="@string/create_infm_account"
+            android:textColor="#5c5c5c"
+            android:textSize="12sp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/seprate"
+            android:layout_toStartOf="@+id/seprate"
+            android:layout_marginEnd="16dp" />
+
+        <View
+            android:id="@+id/seprate"
+            android:layout_width="0.5dp"
+            android:layout_height="15dp"
+            android:layout_centerInParent="true"
+            android:background="#5c5c5c" />
+
+        <TextView
+            android:id="@+id/tv_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/seprate"
+            android:clickable="true"
+            android:text="@string/forget_password"
+            android:textColor="#5c5c5c"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

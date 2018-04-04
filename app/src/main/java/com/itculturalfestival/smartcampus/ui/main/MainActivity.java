@@ -1,9 +1,6 @@
 package com.itculturalfestival.smartcampus.ui.main;
 
-import android.os.Build;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.gyf.barlibrary.ImmersionBar;
@@ -13,15 +10,15 @@ import com.itculturalfestival.smartcampus.adapter.BaseFragmentPagerAdapter;
 import com.itculturalfestival.smartcampus.ui.custom.BottomTab;
 import com.itculturalfestival.smartcampus.ui.custom.NoScrollViewPager;
 import com.itculturalfestival.smartcampus.ui.main.home.HomeFragment;
+import com.itculturalfestival.smartcampus.utils.EaseHelper;
 import com.vegen.smartcampus.baseframework.mvp.presenter.BasePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
-import cn.bmob.v3.Bmob;
-
-import static com.itculturalfestival.smartcampus.Constant.BmobApplicationId;
 
 /**
  * Created by vegen on 2018/3/1.
@@ -37,9 +34,6 @@ public class MainActivity extends AppBaseActivity {
     @Bind(R.id.container)
     LinearLayout container;
     private BaseFragmentPagerAdapter pageAdapter;
-    private int position = 0;
-    private int lastPosition;
-    private int mStatusHeight = 0;
 
     @Override
     protected int layoutId() {
@@ -63,12 +57,12 @@ public class MainActivity extends AppBaseActivity {
         mImmersionBar.init();
         setupViewPager();
         setupBottomTab();
-        lastPosition = viewPager.getCurrentItem();
     }
 
     @Override
     protected void initData() {
-
+        //注册一个监听连接状态的listener
+        EaseHelper.getInstance().addConnectionListener(this);
     }
 
     @Override
@@ -89,27 +83,6 @@ public class MainActivity extends AppBaseActivity {
         pageAdapter = new BaseFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(pageAdapter);
         viewPager.setOffscreenPageLimit(fragments.size());
-        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-//                changeToolbar(position);
-            }
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-        });
-    }
-
-    protected void setStatusBarTranslucent(boolean makeTranslucent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (makeTranslucent) {
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            } else {
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            }
-        }
     }
 
     private void setupBottomTab() {
@@ -120,6 +93,35 @@ public class MainActivity extends AppBaseActivity {
         }));
 
         bottomTab.selectTab(0);
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (viewPager.getCurrentItem() != 0) {
+            viewPager.setCurrentItem(0);
+            return;
+        } else {
+            exitBy2Click();
+        }
+
+    }
+
+    public Boolean isExit = false;
+
+    private void exitBy2Click() {
+        Timer tExit;
+        if (isExit == false) {
+            isExit = true; // 用户第一次按下返回键
+            showToast("再按一次退出程序");
+            tExit = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false; // 取消退出
+                }
+            }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
+        } else {
+            finish();
+        }
     }
 }

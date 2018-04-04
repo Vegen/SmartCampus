@@ -84,6 +84,24 @@
         <!--android:name="Channel ID"-->
         <!--android:value="${UMENG_CHANNEL_VALUE}"/>-->
 
+        <!--启动页-->
+        <activity android:name=".ui.start.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!--引导页-->
+        <activity android:name=".ui.start.GuideActivity"/>
+        <!--登录-->
+        <activity android:name=".ui.start.LoginActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <!--注册-->
+        <activity android:name=".ui.start.SignUpActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
         <!--首页-->
         <activity android:name=".ui.main.MainActivity"
             android:hardwareAccelerated="true"
@@ -92,20 +110,12 @@
             android:theme="@style/MainTheme"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
-        <!--<activity android:name=".TempActivity">-->
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN"/>-->
 
                 <!--<category android:name="android.intent.category.LAUNCHER"/>-->
             <!--</intent-filter>-->
-        <!--</activity>-->
+        </activity>
 
         <!--更多新闻-->
         <activity android:name=".ui.main.home.MoreNewsActivity"/>
@@ -130,6 +140,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
+
+        <activity android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
@@ -168,6 +183,14 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:excludeFromRecents="true"
             />
+
+        <!--wechat-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <!-- 设置环信应用的AppKey -->
         <meta-data android:name="EASEMOB_APPKEY"  android:value="1185170412178561#smartcampus" />

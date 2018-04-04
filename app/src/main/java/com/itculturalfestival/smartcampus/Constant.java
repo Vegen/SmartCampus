@@ -5,7 +5,7 @@ package com.itculturalfestival.smartcampus;
  */
 
 public class Constant {
-    public static final String BmobApplicationId = "329abfb679b7560b6d3bc80ef9204d2c";
+    public static final String BmobApplicationId = "1185170412178561";
 
     public static final int NEWS_TYPE_FOCUS = 1;            // 要闻
     public static final int NEWS_TYPE_COMPREHENSIVE = 2;    // 综合
@@ -24,4 +24,12 @@ public class Constant {
 
     public static final int LOST = 0;                       // 丢失
     public static final int FOUND = 1;                      // 拾获
+    public static final String FirstCome = "FirstCome";     // 首次进入APP标识
+    public static final String USER_DETAIL = "USER_DETAIL"; // 用户信息
+    public static final String USER_NAME = "USER_NAME";     // 用户昵称
+    public static final String USER_HEAD_URL = "USER_HEAD_URL";         // 用户头像
+    public static final String USER_SCHOOL_NAME = "USER_SCHOOL_NAME";   // 用户学校
+    public static final String USER_SEX = "USER_SEX";                   // 用户性别
+    public static final String USER_SCHOOL_ID = "USER_SCHOOL_ID";       // 用户学校ID
+    public static final String USER_PHONE = "USER_PHONE";               // 用户账号
 }

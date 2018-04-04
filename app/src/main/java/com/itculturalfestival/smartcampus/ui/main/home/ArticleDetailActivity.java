@@ -13,26 +13,15 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.itculturalfestival.smartcampus.AppBaseActivity;
 import com.itculturalfestival.smartcampus.R;
 import com.itculturalfestival.smartcampus.network.Url;
-import com.itculturalfestival.smartcampus.utils.ProgressHelper;
 import com.itculturalfestival.smartcampus.utils.ShareUtils;
-import com.itculturalfestival.smartcampus.utils.ToastUtils;
-//import com.umeng.socialize.ShareAction;
-//import com.umeng.socialize.UMShareAPI;
-//import com.umeng.socialize.UMShareListener;
-//import com.umeng.socialize.bean.SHARE_MEDIA;
-//import com.tencent.tauth.IUiListener;
-//import com.tencent.tauth.Tencent;
-//import com.tencent.tauth.UiError;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.umeng.socialize.UMShareAPI;
 import com.vegen.smartcampus.baseframework.utils.LogUtils;
-import com.vegen.smartcampus.baseframework.utils.SystemUtils;
 
 import butterknife.Bind;
 
@@ -88,7 +77,7 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
                         ActivityCompat.requestPermissions(this,mPermissionList,123);
                     }
 
-//                    ShareUtils.shareWeb(this, Url.ROOT_URL + newsUrl, newsTitle, newsTitle + "...", "", R.mipmap.ic_logo);
+                    ShareUtils.shareWeb(this, Url.ROOT_URL + newsUrl, newsTitle, newsTitle + "...", "", R.mipmap.ic_logo);
                 }
                 break;
         }
@@ -105,15 +94,8 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
         return R.layout.app_activity_article_detail;
     }
 
-//    Tencent mTencent;
-
     @Override
     protected void setupUI() {
-//        mTencent = Tencent.createInstance("1106797634", this.getApplicationContext());
-//        baseUiListener = new BaseUiListener();
-//        mTencent.login(this, "", baseUiListener);
-
-
         newsTitle = getIntent().getStringExtra("newsTitle");
         newsUrl = getIntent().getStringExtra("newsUrl");
         setTitle(newsTitle);
@@ -130,26 +112,6 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
         refreshLayout.setEnableLoadmore(false);
         refreshLayout.startRefresh();
     }
-
-//    BaseUiListener baseUiListener;
-
-//    private class BaseUiListener implements IUiListener{
-//
-//        @Override
-//        public void onComplete(Object o) {
-//            LogUtils.e(tag, "onComplete");
-//        }
-//
-//        @Override
-//        public void onError(UiError uiError) {
-//            LogUtils.e(tag, "onError" + uiError.errorDetail);
-//        }
-//
-//        @Override
-//        public void onCancel() {
-//            LogUtils.e(tag, "onCancel");
-//        }
-//    }
 
     @Override
     protected void initData() {
@@ -172,6 +134,7 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
             webView.destroy();
             webView = null;
         }
+        UMShareAPI.get(this).release();
     }
 
     @Override
@@ -186,8 +149,7 @@ public class ArticleDetailActivity extends AppBaseActivity<ArticleDetailContract
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
-//        Tencent.onActivityResultData(requestCode,resultCode,data,listener);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.vegen.smartcampus.baseframework.commonbase;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -7,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -39,9 +42,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private LoadingProgressDialog loadingProgressDialog;
 
-    protected View actionbarLayout;
-
-    private InputMethodManager imm;
+    protected InputMethodManager inputMethodManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +52,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setupUI();
         initData();
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        hideSoftKeyboard();
+    }
+
+    protected void hideSoftKeyboard() {
+        if (getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
+            if (getCurrentFocus() != null)
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
     /**
@@ -72,7 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        this.imm = null;
+        this.inputMethodManager = null;
         ButterKnife.unbind(this);
         closeEventBus();
         disposeAll();
@@ -189,5 +200,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (errorMessage != null) {
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public Context getContext(){
+        return this;
+    }
+
+    public Activity getActivity(){
+        return this;
     }
 }

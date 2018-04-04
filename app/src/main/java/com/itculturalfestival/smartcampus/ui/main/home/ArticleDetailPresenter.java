@@ -11,6 +11,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,13 +50,13 @@ public class ArticleDetailPresenter extends BasePresenterImpl<ArticleDetailContr
                     Element showtag = body.select("#showtag").last();
 
                     if (mView != null) {
-                        mView.showNewsContent("</br>" + (author.html() + contentbody.html() + showtag.html())
-                                .replace("font-size: 10.5pt", "font-size: 16.5pt")
-                                .replace("FONT-SIZE: 10.5pt", "FONT-SIZE: 16.5pt")
-                                .replace("src=\"/files", "src=\"" + Url.ROOT_URL + "/files")
-                                .replace("href=\"\"", "")
-                                .replace("【点击：", "【点击：" + SystemUtils.getRandom(5, 30))
-                                .replace("发布时间", "</br>发布时间"));
+                                    mView.showNewsContent("</br>" + (author.html() + contentbody.html() + showtag.html())
+                                            .replace("font-size: 10.5pt", "font-size: 16.5pt")
+                                            .replace("FONT-SIZE: 10.5pt", "FONT-SIZE: 16.5pt")
+                                            .replace("src=\"/files", "src=\"" + Url.ROOT_URL + "/files")
+                                            .replace("href=\"\"", "")
+                                            .replace("【点击：", "【点击：" + SystemUtils.getRandom(5, 30))
+                                            .replace("发布时间", "</br>发布时间"));
                         mView.hideLoading(false);
                     }
                 }, throwable -> {

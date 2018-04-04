@@ -85,7 +85,7 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
 
     @Override
     public void getBanner() {
-
+        /* todo open
         BmobQuery<Banner> query = new BmobQuery<Banner>();
         query.setCachePolicy(BmobQuery.CachePolicy.CACHE_THEN_NETWORK);   // 先从缓存获取数据，如果没有，再从网络获取。
         // 按照时间降序
@@ -107,6 +107,10 @@ public class HomePresenter extends BasePresenterImpl<HomeContract.View> implemen
             }
         });
         mHttpLinkers.add(new SubscriptionHolder(subscription));
+        */
+
+        mView.showBanner(null);
+        mView.hideLoading(false);
     }
 
 
